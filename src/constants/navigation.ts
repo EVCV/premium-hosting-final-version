@@ -33,9 +33,18 @@ export const FOOTER_LINKS = [
 
 // Social media links for footer (src will be imported in components)
 export const SOCIAL_LINKS = [
+  { name: "Bluesky", link: "https://bluesky.com" },
   { name: "Facebook", link: "https://facebook.com" },
+  { name: "Github", link: "https://github.com" },
+  { name: "Google My Business", link: "https://www.google.com/business" },
+  { name: "Instagram", link: "https://instagram.com" },
   { name: "Linkedin", link: "https://linkedin.com" },
-  { name: "Twitter", link: "https://twitter.com" },
+  { name: "Pinterest", link: "https://pinterest.com" },
+  { name: "Reddit", link: "https://reddit.com" },
+  { name: "Slack", link: "https://slack.com" },
+  { name: "TikTok", link: "https://tiktok.com" },
+  { name: "Twitter (X)", link: "https://x.com" },
+  { name: "Youtube", link: "https://youtube.com" },
 ] as const;
 
 // Anchor link selectors (used in lenis.js for smooth scrolling)

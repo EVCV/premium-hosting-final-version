@@ -53,9 +53,18 @@ export const UI_STRINGS = {
   // Alt texts and labels
   altTexts: {
     logo: "Logo for Premium Hosting Brand",
+    blueskyIcon: "Bluesky",
     facebookIcon: "Facebook",
+    githubIcon: "Github",
+    googleIcon: "Google My Business",
+    instagramIcon: "Instagram",
     linkedinIcon: "Linkedin",
-    twitterIcon: "Twitter",
+    pinterestIcon: "Pinterest",
+    redditIcon: "Reddit",
+    slackIcon: "Slack",
+    tiktokIcon: "TikTok",
+    twitterIcon: "Twitter (X)",
+    youtubeIcon: "Youtube",
   },
 } as const;
 

@@ -1,15 +1,37 @@
 ---
 import { Image } from "astro:assets";
+import Bluesky from "../../assets/bluesky.svg";
 import Facebook from "../../assets/facebook.svg";
-import Linkedin from "../../assets/linkedin.svg";
+import Github from "../../assets/github.svg";
+import Google from "../../assets/google.svg";
+import Instagram from "../../assets/Instagram.svg";
+import Linkedin from "../../assets/linkedIn.svg";
 import Logo from "../../assets/premium-hosting-horizontal-logo.svg";
-import Twitter from "../../assets/twitter.svg";
+import Pinterest from "../../assets/pinterest.svg";
+import Reddit from "../../assets/reddit.svg";
+import Slack from "../../assets/slack.svg";
+import TikTok from "../../assets/tiktok.svg";
+import X from "../../assets/x.svg";
+import Youtube from "../../assets/youtube.svg";
 import ShortForm from "../ui/ShortForm.astro";
 import { FOOTER_LINKS, SOCIAL_LINKS, UI_STRINGS, SITE_CONFIG, EXTERNAL_LINKS, ASSETS } from "../../constants";
 
 const logos = SOCIAL_LINKS.map((social, index) => ({
   ...social,
-  src: [Facebook, Linkedin, Twitter][index],
+  src: [
+    Bluesky,
+    Facebook,
+    Github,
+    Google,
+    Instagram,
+    Linkedin,
+    Pinterest,
+    Reddit,
+    Slack,
+    TikTok,
+    X,
+    Youtube
+  ][index],
 }));
 
 const links = FOOTER_LINKS;
