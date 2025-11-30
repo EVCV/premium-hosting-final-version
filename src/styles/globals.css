@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Grotesk";
+    src: url("/fonts/grotesk/SpaceGrotesk-Regular.woff"), format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Grotesk";
+    src: url("/fonts/grotesk/SpaceGrotesk-Medium.woff"), format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --gold: #D4AF37;
+    --black: #000000;
+    --dark: #1a0033;
+    --white: #ffffff;
+    --gray: #f3f3f3;
+    --content-max-width: 1440px;
+    --footer-max-width: 1920px;
+    --navbar-max-width: 1920px;
+  }
+
+  @layer base {
+    * {
+      box-sizing: border-box;
+      font-family: "Grotesk", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* Mobile-first typography */
+    body {
+      font-size: 16px;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    h1 {
+      font-size: 2.688rem;
+      line-height: 120%;
+      font-weight: 500;
+    }
+
+    h2 {
+      font-size: 2.25rem;
+      font-weight: 500;
+    }
+
+    h3 {
+      font-size: 1.625rem;
+      font-weight: 500;
+    }
+
+    h4 {
+      font-size: 1.125rem;
+      font-weight: 500;
+    }
+
+    /* Tablet and up */
+    @media (min-width: 640px) {
+      body {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      h4 {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  @layer components {
+    .btn-primary {
+      @apply bg-dark text-white rounded-lg px-[35px] py-5 transition-all duration-200;
+    }
+    .btn-primary:hover {
+      @apply bg-gold text-black transform scale-105;
+    }
+
+    .btn-secondary {
+      @apply bg-transparent text-black px-[35px] py-5 rounded-lg border border-solid border-black transition-all duration-200;
+    }
+    .btn-secondary:hover {
+      @apply bg-black text-white border-gold transform scale-105;
+    }
+
+    .btn-tertiary {
+      @apply bg-gold text-black rounded-lg px-[35px] py-5 transition-all duration-200;
+    }
+    .btn-tertiary:hover {
+      @apply bg-white text-black transform scale-105;
+    }
+
+    .goldhead {
+      @apply bg-gold text-black rounded-[7px] px-[7px];
+    }
+
+    .whitehead {
+      @apply bg-white text-black rounded-[7px] px-[7px];
+    }
+
+    .blackhead {
+      @apply bg-black text-white rounded-[7px] px-[7px];
+    }
+  }
+}
