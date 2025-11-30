@@ -14,7 +14,7 @@ import TikTok from "../../assets/tiktok.svg";
 import X from "../../assets/x.svg";
 import Youtube from "../../assets/youtube.svg";
 import ShortForm from "../ui/ShortForm.astro";
-import { FOOTER_LINKS, SOCIAL_LINKS, UI_STRINGS, SITE_CONFIG, EXTERNAL_LINKS, ASSETS } from "../../constants";
+import { FOOTER_LINKS, SOCIAL_LINKS, UI_STRINGS, SITE_CONFIG, EXTERNAL_LINKS, ASSETS, SIZES } from "../../constants";
 
 const logos = SOCIAL_LINKS.map((social, index) => ({
   ...social,
@@ -48,7 +48,7 @@ const links = FOOTER_LINKS;
         >
           <picture>
             <a href="#home">
-              <Image src={Logo} alt="Logo for Premium Hosting Brand" />
+              <Image src={Logo} alt="Logo for Premium Hosting Brand" class={`${SIZES.logo.footerMaxWidth} h-auto`} />
             </a>
           </picture>
           <ul class="flex flex-col sm:flex-row gap-5">
@@ -71,7 +71,7 @@ const links = FOOTER_LINKS;
                   <li>
                     <a href={logo.link} target="_blank">
                       <picture>
-                        <Image src={logo.src} alt={logo.name} />
+                      <Image src={logo.src} alt={logo.name} class={`${SIZES.icon.social} flex-shrink-0`} />
                       </picture>
                     </a>
                   </li>

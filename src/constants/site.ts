@@ -16,12 +16,27 @@ export const SITE_CONFIG = {
     linkedin: "premiumhosting",
     twitter: "@premiumhosting",
     facebook: "premiumhosting",
+    instagram: "premiumhosting",
+    github: "premiumhosting",
+    youtube: "premiumhosting",
+    tiktok: "premiumhosting",
+    pinterest: "premiumhosting",
+    reddit: "premiumhosting",
+    slack: "premiumhosting",
+    bluesky: "premiumhosting",
+    google: "premiumhosting",
+    whatsapp: "premiumhosting",
+    telegram: "premiumhosting",
+    discord: "premiumhosting",
+    medium: "premiumhosting",
+    vimeo: "premiumhosting",
+    tumblr: "premiumhosting"
   },
 
   // Business credits and licensing
   credits: {
-    year: "2024",
-    company: "Positivus",
+    year: "2025",
+    company: "Premium Hosting",
     builtWith: {
       name: "Astro",
       url: "https://astro.build/",
@@ -48,4 +63,14 @@ export const ASSETS = {
   faviconSvg: "/premium-hosting-favicon.svg",
   faviconPng: "/premium-hosting-favicon.png",
   logo: "/premium-hosting-horizontal-logo.svg",
+} as const;
+
+// Size constants for consistent styling
+export const SIZES = {
+  icon: {
+    social: "w-10 h-10, flex-shrink-0",
+  },
+  logo: {
+    footerMaxWidth: "max-w-[400px]",
+  },
 } as const;
