@@ -1,4 +1,5 @@
 import Lenis from "lenis";
+import { LAYOUT_CONFIG } from "../constants";
 
 document.addEventListener("DOMContentLoaded", function () {
   const lenis = new Lenis();
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const t = e.currentTarget;
 
       if (t) {
-        lenis.scrollTo(t.getAttribute("href"), { offset: -132 } ?? "");
+        lenis.scrollTo(t.getAttribute("href"), { offset: LAYOUT_CONFIG.spacing.scrollOffset });
       }
     });
   });

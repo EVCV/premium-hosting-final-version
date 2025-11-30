@@ -1,28 +1,8 @@
 ---
 import { Image } from "astro:assets";
+import { NAV_LINKS, UI_STRINGS } from "../../constants";
 
-const navLinks = [
-  {
-    name: "About us",
-    href: "#about",
-  },
-  {
-    name: "Services",
-    href: "#services",
-  },
-  {
-    name: "Use cases",
-    href: "#cases",
-  },
-  {
-    name: "Testimonials",
-    href: "#testimonials",
-  },
-  {
-    name: "Contact",
-    href: "#contact",
-  },
-];
+const navLinks = NAV_LINKS;
 
 import bars from "../../assets/bars.svg";
 import brand from "../../assets/premium-hosting-horizontal-logo.svg";
@@ -66,7 +46,7 @@ import brand from "../../assets/premium-hosting-horizontal-logo.svg";
 
       <!-- Login -->
       <div class="flex xl:flex-row xl:items-center px-4 xl:gap-4 flex-col">
-        <button class="btn-secondary">Request a quote</button>
+        <button class="btn-secondary">{UI_STRINGS.buttons.requestQuote}</button>
       </div>
     </div>
 
