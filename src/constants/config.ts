@@ -40,6 +40,8 @@ export const RESPONSIVE_BREAKPOINTS = {
   md: "768px",  // Desktop breakpoint
   lg: "1024px", // Large desktop breakpoint
   xl: "1280px", // Extra large breakpoint
+  xxl: "1536px", // Extra extra large breakpoint
+  xxxl: "1920px", // Extra extra extra large breakpoint
 } as const;
 
 // Animation and transition durations
