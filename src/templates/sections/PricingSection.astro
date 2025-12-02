@@ -1,0 +1,76 @@
+---
+interface PricingPlan {
+  name: string;
+  price: string;
+  period: string;
+  features: string[];
+  popular?: boolean;
+  ctaText?: string;
+}
+
+interface Props {
+  plans: PricingPlan[];
+  title?: string;
+  description?: string;
+}
+
+const {
+  plans,
+  title = "Choose Your Plan",
+  description = "Select the perfect hosting plan for your needs"
+} = Astro.props;
+---
+
+<section class="pricing-section">
+  <div class="container mx-auto px-4 py-16">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">{description}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      {plans.map((plan) => (
+        <div class=`pricing-card p-6 rounded-lg border-2 ${plan.popular ? 'border-blue-500 relative' : 'border-gray-200'} bg-white shadow-lg hover:shadow-xl transition-shadow duration-300`>
+          {plan.popular && (
+            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+              <span class="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+            </div>
+          )}
+
+          <div class="text-center mb-6">
+            <h3 class="text-xl font-bold mb-2">{plan.name}</h3>
+            <div class="flex items-baseline justify-center">
+              <span class="text-4xl font-bold">{plan.price}</span>
+              <span class="text-gray-600 ml-1">/{plan.period}</span>
+            </div>
+          </div>
+
+          <ul class="space-y-3 mb-6">
+            {plan.features.map((feature) => (
+              <li class="flex items-center">
+                <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          <button class=`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-200 ${plan.popular ? 'bg-blue-500 text-white hover:bg-blue-600' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>
+            {plan.ctaText || 'Get Started'}
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-card {
+    position: relative;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-2px);
+  }
+</style>

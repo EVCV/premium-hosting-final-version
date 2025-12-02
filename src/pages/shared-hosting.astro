@@ -1,0 +1,96 @@
+---
+import BaseTemplate from '../templates/layouts/BaseTemplate.astro';
+import TemplateRenderer from '../components/TemplateRenderer.astro';
+import templates from '../data/templates.json';
+
+const sharedPlans = [
+  {
+    name: "Starter",
+    price: "£2.99",
+    period: "month",
+    features: [
+      "1 Website",
+      "10 GB SSD Storage",
+      "10 GB Bandwidth",
+      "Free SSL Certificate",
+      "cPanel Control Panel",
+      "24/7 Support"
+    ],
+    ctaText: "Get Started"
+  },
+  {
+    name: "Professional",
+    price: "£4.99",
+    period: "month",
+    popular: true,
+    features: [
+      "Unlimited Websites",
+      "50 GB SSD Storage",
+      "Unlimited Bandwidth",
+      "Free SSL Certificate",
+      "cPanel & Softaculous",
+      "Daily Backups",
+      "Priority Support"
+    ],
+    ctaText: "Most Popular!"
+  },
+  {
+    name: "Business",
+    price: "£7.99",
+    period: "month",
+    features: [
+      "Unlimited Websites",
+      "100 GB SSD Storage",
+      "Unlimited Bandwidth",
+      "Free Wildcard SSL",
+      "Advanced Security",
+      "Premium Support",
+      "Advanced Analytics"
+    ],
+    ctaText: "Upgrade Now"
+  }
+];
+
+// Create a custom template for this page
+const sharedHostingTemplate = {
+  layout: "BaseTemplate",
+  sections: [
+    {
+      id: "shared-hero",
+      component: "HeroSection",
+      props: {
+        title: "Shared Web Hosting",
+        description: "Perfect for small websites, blogs, and personal projects. Reliable, fast, and affordable shared hosting solutions."
+      }
+    },
+    {
+      id: "shared-pricing",
+      component: "PricingSection",
+      props: {
+        plans: sharedPlans,
+        title: "Shared Hosting Plans",
+        description: "Choose from our range of shared hosting packages designed to scale with your website"
+      }
+    },
+    {
+      id: "shared-services",
+      component: "ServicesSection"
+    },
+    {
+      id: "shared-contact",
+      component: "ContactSection"
+    }
+  ]
+};
+
+// Page data
+const pageData = {
+  pageType: 'hosting',
+  title: "Shared Hosting - Affordable Web Hosting Solutions",
+  description: "Reliable shared web hosting with unlimited bandwidth, SSD storage, and 24/7 support for your website."
+};
+---
+
+<BaseTemplate title={pageData.title} description={pageData.description}>
+  <TemplateRenderer template={sharedHostingTemplate} data={pageData} />
+</BaseTemplate>
