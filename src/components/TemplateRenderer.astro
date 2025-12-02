@@ -1,0 +1,76 @@
+---
+import type { AstroComponentFactory } from 'astro';
+
+interface SectionConfig {
+  id: string;
+  component: string;
+  props?: Record<string, any>;
+}
+
+interface TemplateConfig {
+  layout: string;
+  sections: SectionConfig[];
+}
+
+interface Props {
+  template: TemplateConfig;
+  data?: Record<string, any>;
+}
+
+const { template, data } = Astro.props;
+
+// Component name mapping to handle different naming patterns
+const componentMap: Record<string, string> = {
+  'HeroSection': 'Hero',
+  'SponsorsSection': 'Sponsors',
+  'ServicesSection': 'Services',
+  'TeamSection': 'Team',
+  'TestimonialsSection': 'Testimonials',
+  'CasesSection': 'Cases',
+  'ContactSection': 'Contact',
+  'PostContent': 'PostContent'
+};
+
+// Dynamically import components from both locations
+const sectionComponents: Record<string, AstroComponentFactory> = import.meta.glob(
+  '../components/sections/*.astro',
+  { eager: true }
+) as any;
+
+const templateSectionComponents: Record<string, AstroComponentFactory> = import.meta.glob(
+  '../templates/sections/*.astro',
+  { eager: true }
+) as any;
+---
+
+<div class="template-renderer">
+  {template.sections.map((section: SectionConfig) => {
+    // Map component name if needed
+    const actualComponentName = componentMap[section.component] || section.component;
+
+    // Try to find in sections first, then template sections
+    const Component = sectionComponents[`../components/sections/${actualComponentName}.astro`]?.default ||
+                     templateSectionComponents[`../templates/sections/${actualComponentName}.astro`]?.default;
+
+    if (!Component) {
+      console.warn(`Component not found: ${section.component}`);
+      return null;
+    }
+
+    return (
+      <div id={section.id} class={`section section-${section.id}`}>
+        <Component {...section.props} {...data} />
+      </div>
+    );
+  })}
+</div>
+
+<style>
+  .template-renderer {
+    width: 100%;
+  }
+
+  .section {
+    width: 100%;
+  }
+</style>

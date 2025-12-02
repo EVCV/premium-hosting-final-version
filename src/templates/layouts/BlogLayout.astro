@@ -1,0 +1,30 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description, ...rest } = Astro.props;
+---
+
+<MainLayout title={title || 'Blog'} description={description || 'Read our latest articles'} {...rest}>
+  <article class="blog-layout">
+    <slot />
+  </article>
+</MainLayout>
+
+<style>
+  .blog-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .blog-layout {
+      padding: 3rem 2rem;
+    }
+  }
+</style>

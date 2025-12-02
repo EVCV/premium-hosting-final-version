@@ -1,0 +1,30 @@
+{
+  "homepage": {
+    "HeroSection": {
+      "backgroundColor": "#1a0033",
+      "showCTA": true,
+      "ctaText": "Get Started Today"
+    },
+    "ServicesSection": {
+      "cardLayout": "3-columns",
+      "showDescription": true
+    }
+  },
+  "about": {
+    "HeroSection": {
+      "backgroundColor": "#f3f3f3",
+      "height": "600px",
+      "content": {
+        "title": "About Us",
+        "description": "Learn more about our company and mission."
+      }
+    }
+  },
+  "blog": {
+    "PostContent": {
+      "showAuthor": true,
+      "showDate": true,
+      "showTags": true
+    }
+  }
+}

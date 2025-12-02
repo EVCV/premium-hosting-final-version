@@ -1,0 +1,86 @@
+{
+  "homepage": {
+    "layout": "BaseTemplate",
+    "sections": [
+      {
+        "id": "hero",
+        "component": "HeroSection",
+        "props": {
+          "maxWidth": "100%"
+        }
+      },
+      {
+        "id": "sponsors",
+        "component": "SponsorsSection"
+      },
+      {
+        "id": "services",
+        "component": "ServicesSection"
+      },
+      {
+        "id": "team",
+        "component": "TeamSection"
+      },
+      {
+        "id": "testimonials",
+        "component": "TestimonialsSection"
+      },
+      {
+        "id": "cases",
+        "component": "CasesSection"
+      },
+      {
+        "id": "contact",
+        "component": "ContactSection"
+      }
+    ]
+  },
+  "about": {
+    "layout": "BaseTemplate",
+    "sections": [
+      {
+        "id": "about-hero",
+        "component": "HeroSection"
+      },
+      {
+        "id": "team",
+        "component": "TeamSection"
+      }
+    ]
+  },
+  "blog": {
+    "layout": "BlogLayout",
+    "sections": [
+      {
+        "id": "post-content",
+        "component": "PostContent"
+      },
+      {
+        "id": "related-posts",
+        "component": "RelatedPostsSection"
+      }
+    ]
+  },
+  "product": {
+    "layout": "BaseTemplate",
+    "sections": [
+      {
+        "id": "product-hero",
+        "component": "ProductHeroSection"
+      },
+      {
+        "id": "product-details",
+        "component": "ProductDetailsSection"
+      }
+    ]
+  },
+  "base": {
+    "layout": "BaseTemplate",
+    "sections": [
+      {
+        "id": "default-hero",
+        "component": "HeroSection"
+      }
+    ]
+  }
+}

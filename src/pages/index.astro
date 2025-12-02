@@ -1,28 +1,21 @@
 ---
-import Cases from "../components/sections/Cases.astro";
-import Contact from "../components/sections/Contact.astro";
-import Hero from "../components/sections/Hero.astro";
-import Process from "../components/sections/faq.astro";
-import Proposal from "../components/sections/Proposal.astro";
-import Services from "../components/sections/Services.astro";
-import Sponsors from "../components/sections/Sponsors.astro";
-import Team from "../components/sections/Team.astro";
-import Testimonials from "../components/sections/Testimonials.astro";
-import MainLayout from "../layouts/MainLayout.astro";
+import BaseTemplate from '../templates/layouts/BaseTemplate.astro';
+import TemplateRenderer from '../components/TemplateRenderer.astro';
+import templates from '../data/templates.json';
 import "../styles/globals.css";
+
+// Get homepage template configuration
+const templateConfig = (templates as any)['homepage'];
+
+// Homepage data (can be extended with CMS data later)
+const pageData = {
+  pageType: 'homepage'
+};
 ---
 
-<MainLayout
+<BaseTemplate
   title="Premium Hosting"
   description="Premium Web hosting services and solutions"
 >
-  <Hero />
-  <Sponsors />
-  <Services />
-  <Proposal />
-  <Cases />
-  <Process />
-  <Team />
-  <Testimonials />
-  <Contact />
-</MainLayout>
+  <TemplateRenderer template={templateConfig} data={pageData} />
+</BaseTemplate>
