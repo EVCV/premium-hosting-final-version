@@ -1,0 +1,55 @@
+---
+import BaseTemplate from '../templates/layouts/BaseTemplate.astro';
+
+const pageData = {
+  title: "Dedicated Servers - Premium Dedicated Server Hosting",
+  description: "High-performance dedicated servers with enterprise hardware, full root access, and 24/7 monitoring for mission-critical applications."
+};
+---
+
+<BaseTemplate title={pageData.title} description={pageData.description}>
+  <section class="pt-32 pb-24 bg-gradient-to-br from-gray-50 via-white to-gray-100 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <div class="inline-flex items-center px-4 py-2 bg-gold/10 border border-gold/20 rounded-full mb-6">
+        <span class="text-dark font-medium text-sm">🏢 Enterprise Grade Hardware</span>
+      </div>
+      
+      <h1 class="text-5xl lg:text-6xl font-bold text-dark mb-6">
+        Dedicated Servers
+      </h1>
+      
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12">
+        Get the ultimate in performance and control with our dedicated server solutions. Perfect for high-traffic websites, enterprise applications, and mission-critical workloads.
+      </p>
+
+      <div class="luxury-card p-12 max-w-2xl mx-auto">
+        <h2 class="text-2xl font-bold text-dark mb-6">🚀 Coming Soon</h2>
+        <p class="text-gray-600 mb-8">
+          We're putting the finishing touches on our dedicated server offerings. 
+          Get early access and special launch pricing by joining our waitlist.
+        </p>
+        
+        <form class="space-y-4 max-w-md mx-auto">
+          <input 
+            type="email" 
+            placeholder="Enter your email address"
+            class="w-full px-6 py-4 border border-gray-300 rounded-lg focus:border-gold focus:outline-none"
+            required
+          />
+          <button type="submit" class="btn-primary w-full py-4">
+            Join Waitlist
+          </button>
+        </form>
+
+        <div class="mt-8 pt-8 border-t border-gray-200">
+          <p class="text-sm text-gray-500 mb-4">In the meantime, check out our VPS hosting:</p>
+          <a href="/vps-hosting" class="btn-secondary">
+            View VPS Plans
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseTemplate>

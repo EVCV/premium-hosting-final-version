@@ -1,5 +1,7 @@
 ---
 import Hero from '../components/sections/Hero.astro';
+import HostingHero from '../components/sections/HostingHero.astro';
+import Features from '../components/sections/Features.astro';
 import Sponsors from '../components/sections/Sponsors.astro';
 import Services from '../components/sections/Services.astro';
 import Team from '../components/sections/Team.astro';
@@ -30,6 +32,8 @@ const { template, data } = Astro.props;
 // Component registry for direct access (matches template.json naming)
 const components = {
   HeroSection: Hero,
+  HostingHeroSection: HostingHero,
+  FeaturesSection: Features,
   SponsorsSection: Sponsors,
   ServicesSection: Services,
   TeamSection: Team,
@@ -39,7 +43,7 @@ const components = {
   PricingSection,
   PostContent
 };
----
+---2
 
 <div class="template-renderer">
   {template.sections.map((section: SectionConfig) => {
@@ -57,9 +61,13 @@ const components = {
       );
     }
 
+    // Provide default props for components that need them
+    const defaultProps: any = section.component === 'PricingSection' ? { plans: [] } : {};
+    const mergedProps = { ...defaultProps, ...section.props, ...data };
+    
     return (
       <div id={section.id} class={`section section-${section.id}`}>
-        {Component && <Component {...section.props} {...data} />}
+        {Component && <Component {...mergedProps} />}
       </div>
     );
   })}

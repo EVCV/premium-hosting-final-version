@@ -4,30 +4,29 @@
     "sections": [
       {
         "id": "hero",
-        "component": "HeroSection",
+        "component": "HostingHeroSection",
         "props": {
-          "maxWidth": "100%"
+          "title": "Premium Web Hosting Solutions",
+          "subtitle": "Fast, Secure, Reliable",
+          "description": "Host your website with confidence. 99.9% uptime guarantee, SSD storage, and 24/7 expert support.",
+          "showDomainSearch": true
         }
       },
       {
-        "id": "sponsors",
-        "component": "SponsorsSection"
+        "id": "pricing",
+        "component": "PricingSection",
+        "props": {
+          "title": "Hosting Plans for Every Need",
+          "description": "From personal blogs to enterprise websites, we have the perfect hosting solution for you."
+        }
       },
       {
         "id": "services",
         "component": "ServicesSection"
       },
       {
-        "id": "team",
-        "component": "TeamSection"
-      },
-      {
         "id": "testimonials",
         "component": "TestimonialsSection"
-      },
-      {
-        "id": "cases",
-        "component": "CasesSection"
       },
       {
         "id": "contact",

@@ -1,0 +1,152 @@
+---
+import BaseTemplate from '../templates/layouts/BaseTemplate.astro';
+import TemplateRenderer from '../components/TemplateRenderer.astro';
+
+const wordpressPlans = [
+  {
+    name: "WP Starter",
+    price: "£3.99",
+    period: "month",
+    yearlyPrice: "£3.19",
+    biannualPrice: "£2.79",
+    description: "Perfect for WordPress beginners and bloggers",
+    features: [
+      "1 WordPress Website",
+      "20 GB SSD Storage",
+      "Unmetered Bandwidth",
+      "Free SSL Certificate",
+      "WordPress Optimized",
+      "Automatic Updates",
+      "Daily Backups",
+      "24/7 Support"
+    ],
+    ctaText: "Get Started"
+  },
+  {
+    name: "WP Professional",
+    price: "£6.99",
+    period: "month",
+    yearlyPrice: "£5.59",
+    biannualPrice: "£4.89",
+    triannualPrice: "£4.19",
+    popular: true,
+    description: "Ideal for growing WordPress businesses",
+    features: [
+      "Unlimited WordPress Sites",
+      "75 GB SSD Storage",
+      "Unmetered Bandwidth",
+      "Free SSL Certificate",
+      "WordPress Optimized",
+      "Staging Environment",
+      "Advanced Security",
+      "Performance Optimization",
+      "Priority Support"
+    ],
+    ctaText: "Most Popular"
+  },
+  {
+    name: "WP Enterprise",
+    price: "£12.99",
+    period: "month",
+    yearlyPrice: "£10.39",
+    biannualPrice: "£9.09",
+    triannualPrice: "£7.79",
+    description: "For high-traffic WordPress websites",
+    features: [
+      "Unlimited WordPress Sites",
+      "150 GB SSD Storage",
+      "Unmetered Bandwidth",
+      "Free Wildcard SSL",
+      "WordPress Optimized",
+      "Multiple Staging Sites",
+      "Advanced Security Suite",
+      "Performance Optimization",
+      "WP-CLI Access",
+      "Premium Support"
+    ],
+    ctaText: "Upgrade Now"
+  }
+];
+
+// WordPress hosting template configuration
+const wordpressTemplate = {
+  layout: "BaseTemplate",
+  sections: [
+    {
+      id: "wordpress-hero",
+      component: "HostingHeroSection",
+      props: {
+        title: "WordPress Hosting",
+        subtitle: "Optimized, Fast, Secure",
+        description: "WordPress hosting optimized for speed, security, and performance. Get your WordPress site online in minutes with our specialized hosting platform.",
+        showDomainSearch: true
+      }
+    },
+    {
+      id: "wordpress-pricing",
+      component: "PricingSection",
+      props: {
+        plans: wordpressPlans,
+        title: "WordPress Hosting Plans",
+        description: "Choose from our WordPress-optimized hosting packages designed for maximum performance"
+      }
+    },
+    {
+      id: "wordpress-features",
+      component: "FeaturesSection",
+      props: {
+        title: "WordPress-Optimized Features",
+        subtitle: "Built specifically for WordPress",
+        description: "Our WordPress hosting platform includes everything you need for a fast, secure, and successful WordPress website.",
+        features: [
+          {
+            icon: "⚡",
+            title: "WordPress Optimized",
+            description: "Custom-configured servers specifically tuned for WordPress performance and speed."
+          },
+          {
+            icon: "🔄",
+            title: "Automatic Updates",
+            description: "Keep WordPress core, themes, and plugins updated automatically for security and performance."
+          },
+          {
+            icon: "🎭",
+            title: "Staging Environment",
+            description: "Test changes safely with our one-click staging environment before going live."
+          },
+          {
+            icon: "🛡️",
+            title: "WordPress Security",
+            description: "Advanced WordPress-specific security measures including malware scanning and removal."
+          },
+          {
+            icon: "📈",
+            title: "Performance Cache",
+            description: "Built-in caching and optimization for lightning-fast WordPress loading times."
+          },
+          {
+            icon: "🔧",
+            title: "WP-CLI Access",
+            description: "Command-line access for advanced WordPress management and development tasks."
+          }
+        ]
+      }
+    },
+    {
+      id: "wordpress-contact",
+      component: "ContactSection"
+    }
+  ]
+};
+
+// Page data
+const pageData = {
+  pageType: 'hosting',
+  title: "WordPress Hosting - Optimized WordPress Web Hosting",
+  description: "Fast, secure WordPress hosting optimized for performance. Automatic updates, staging environment, and WordPress-specific security features."
+};
+---
+
+<BaseTemplate title={pageData.title} description={pageData.description}>
+  <TemplateRenderer template={wordpressTemplate} data={pageData} />
+</BaseTemplate>

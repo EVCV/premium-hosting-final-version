@@ -1,0 +1,59 @@
+---
+import BaseTemplate from '../../templates/layouts/BaseTemplate.astro';
+
+const pageData = {
+  title: "Privacy Policy - Premium Hosting",
+  description: "Privacy policy explaining how Premium Hosting collects, uses, and protects your personal information."
+};
+---
+
+<BaseTemplate title={pageData.title} description={pageData.description}>
+  <section class="pt-32 pb-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-dark mb-8">Privacy Policy</h1>
+      
+      <div class="prose prose-lg max-w-none text-gray-600">
+        <p class="text-sm text-gray-500 mb-8">Last updated: December 3, 2024</p>
+        
+        <div class="luxury-card p-8 text-center mb-8">
+          <h2 class="text-2xl font-bold text-dark mb-4">🔒 Privacy Documentation Coming Soon</h2>
+          <p class="mb-6">
+            We're currently preparing comprehensive privacy documentation that outlines how we collect, 
+            use, and protect your personal information in compliance with GDPR and UK data protection laws.
+          </p>
+          <p class="text-sm text-gray-500">
+            For immediate privacy inquiries, please contact our privacy team at: 
+            <a href="mailto:privacy@premium-hosting.co.uk" class="text-gold hover:text-dark">
+              privacy@premium-hosting.co.uk
+            </a>
+          </p>
+        </div>
+
+        <h2>Key Privacy Principles</h2>
+        <ul>
+          <li>We only collect data necessary for providing our hosting services</li>
+          <li>Your data is never sold to third parties</li>
+          <li>We implement industry-standard security measures</li>
+          <li>You have full control over your personal data</li>
+          <li>We comply with GDPR and UK data protection regulations</li>
+        </ul>
+
+        <h2>Contact Our Privacy Team</h2>
+        <p>
+          Data Protection Officer<br>
+          Premium Hosting<br>
+          123 Tech Street<br>
+          London, EC1A 1BB<br>
+          United Kingdom<br>
+          Email: privacy@premium-hosting.co.uk
+        </p>
+
+        <div class="mt-12">
+          <a href="/contact" class="btn-primary">
+            Contact Privacy Team
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseTemplate>

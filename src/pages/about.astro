@@ -1,0 +1,81 @@
+---
+import BaseTemplate from '../templates/layouts/BaseTemplate.astro';
+import TemplateRenderer from '../components/TemplateRenderer.astro';
+
+// About page template configuration
+const aboutTemplate = {
+  layout: "BaseTemplate",
+  sections: [
+    {
+      id: "about-hero",
+      component: "HostingHeroSection",
+      props: {
+        title: "About Premium Hosting",
+        subtitle: "Trusted, Reliable, Professional",
+        description: "We've been providing world-class hosting services since 2010, helping thousands of businesses establish their online presence with confidence.",
+        showDomainSearch: false
+      }
+    },
+    {
+      id: "about-features",
+      component: "FeaturesSection",
+      props: {
+        title: "Why Choose Premium Hosting?",
+        subtitle: "Our commitment to excellence",
+        description: "We combine cutting-edge technology with exceptional customer service to deliver hosting solutions that grow with your business.",
+        features: [
+          {
+            icon: "🏆",
+            title: "Industry Leading",
+            description: "Over 14 years of experience in web hosting with industry-leading performance and reliability."
+          },
+          {
+            icon: "👥",
+            title: "Expert Team",
+            description: "Our certified support team includes system administrators and hosting specialists available 24/7."
+          },
+          {
+            icon: "🌍",
+            title: "Global Infrastructure",
+            description: "Data centers across multiple continents ensure fast loading times worldwide."
+          },
+          {
+            icon: "🛡️",
+            title: "Security First",
+            description: "Advanced security measures including firewalls, DDoS protection, and regular security audits."
+          },
+          {
+            icon: "💎",
+            title: "Premium Quality",
+            description: "Enterprise-grade hardware and software stack for maximum performance and reliability."
+          },
+          {
+            icon: "📈",
+            title: "Scalable Solutions",
+            description: "From small blogs to enterprise applications, our hosting scales with your needs."
+          }
+        ]
+      }
+    },
+    {
+      id: "about-team",
+      component: "TeamSection"
+    },
+    {
+      id: "about-contact",
+      component: "ContactSection"
+    }
+  ]
+};
+
+// Page data
+const pageData = {
+  pageType: 'about',
+  title: "About Us - Premium Web Hosting Company",
+  description: "Learn about Premium Hosting's commitment to providing reliable, fast, and secure web hosting services with 24/7 expert support since 2010."
+};
+---
+
+<BaseTemplate title={pageData.title} description={pageData.description}>
+  <TemplateRenderer template={aboutTemplate} data={pageData} />
+</BaseTemplate>

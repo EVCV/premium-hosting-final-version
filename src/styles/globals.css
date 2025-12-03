@@ -97,36 +97,182 @@
 
   @layer components {
     .btn-primary {
-      @apply bg-dark text-white rounded-lg px-[35px] py-5 transition-all duration-200;
+      @apply bg-dark text-white rounded-lg px-[35px] py-5 transition-all duration-300 relative overflow-hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+    .btn-primary:hover::before {
+      left: 100%;
     }
     .btn-primary:hover {
       @apply bg-gold text-black transform scale-105;
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
     }
 
     .btn-secondary {
-      @apply bg-transparent text-black px-[35px] py-5 rounded-lg border border-solid border-black transition-all duration-200;
+      @apply bg-transparent text-black px-[35px] py-5 rounded-lg border-2 border-solid border-black transition-all duration-300 relative overflow-hidden;
+    }
+    .btn-secondary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: black;
+      transition: width 0.3s ease;
+      z-index: -1;
+    }
+    .btn-secondary:hover::before {
+      width: 100%;
     }
     .btn-secondary:hover {
-      @apply bg-black text-white border-gold transform scale-105;
+      @apply text-white border-gold transform scale-105;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     }
 
     .btn-tertiary {
-      @apply bg-gold text-black rounded-lg px-[35px] py-5 transition-all duration-200;
+      @apply bg-gold text-black rounded-lg px-[35px] py-5 transition-all duration-300 relative;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
     }
     .btn-tertiary:hover {
       @apply bg-white text-black transform scale-105;
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
     }
 
     .goldhead {
-      @apply bg-gold text-black rounded-[7px] px-[7px];
+      @apply bg-gold text-black rounded-[7px] px-[7px] transition-all duration-200;
+    }
+    .goldhead:hover {
+      @apply transform scale-105;
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
     }
 
     .whitehead {
-      @apply bg-white text-black rounded-[7px] px-[7px];
+      @apply bg-white text-black rounded-[7px] px-[7px] transition-all duration-200;
+    }
+    .whitehead:hover {
+      @apply transform scale-105;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
     }
 
     .blackhead {
-      @apply bg-black text-white rounded-[7px] px-[7px];
+      @apply bg-black text-white rounded-[7px] px-[7px] transition-all duration-200;
+    }
+    .blackhead:hover {
+      @apply transform scale-105;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Luxury Card Styles */
+    .luxury-card {
+      @apply bg-white rounded-2xl border border-gray-200 transition-all duration-300 relative overflow-hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    .luxury-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--dark));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .luxury-card:hover::before {
+      opacity: 1;
+    }
+    .luxury-card:hover {
+      @apply transform -translate-y-2 border-gold;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Interactive Elements */
+    .interactive-icon {
+      @apply transition-all duration-300 cursor-pointer;
+    }
+    .interactive-icon:hover {
+      @apply transform rotate-6 scale-110;
+    }
+
+    /* Floating Animation */
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Glow Effect */
+    .glow-on-hover {
+      @apply relative transition-all duration-300;
+    }
+    .glow-on-hover::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, var(--gold), var(--dark), var(--gold));
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+      filter: blur(8px);
+    }
+    .glow-on-hover:hover::after {
+      opacity: 0.7;
+    }
+
+    /* Shimmer Effect */
+    .shimmer {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    /* Ripple Effect */
+    .ripple {
+      @apply relative overflow-hidden;
+    }
+    .ripple::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.5);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    .ripple:active::before {
+      width: 300px;
+      height: 300px;
     }
   }
 }

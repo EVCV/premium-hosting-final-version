@@ -1,20 +1,23 @@
 ---
 import BaseTemplate from '../templates/layouts/BaseTemplate.astro';
 import TemplateRenderer from '../components/TemplateRenderer.astro';
-import templates from '../data/templates.json';
 
 const sharedPlans = [
   {
     name: "Starter",
     price: "£2.99",
     period: "month",
+    yearlyPrice: "£2.39",
+    biannualPrice: "£2.09",
+    description: "Perfect for personal websites and small blogs",
     features: [
       "1 Website",
       "10 GB SSD Storage",
-      "10 GB Bandwidth",
+      "Unmetered Bandwidth",
       "Free SSL Certificate",
       "cPanel Control Panel",
-      "24/7 Support"
+      "24/7 Email Support",
+      "Free Website Migration"
     ],
     ctaText: "Get Started"
   },
@@ -22,30 +25,40 @@ const sharedPlans = [
     name: "Professional",
     price: "£4.99",
     period: "month",
+    yearlyPrice: "£3.99",
+    biannualPrice: "£3.49",
+    triannualPrice: "£2.99",
     popular: true,
+    description: "Ideal for growing businesses and e-commerce",
     features: [
       "Unlimited Websites",
       "50 GB SSD Storage",
-      "Unlimited Bandwidth",
+      "Unmetered Bandwidth",
       "Free SSL Certificate",
       "cPanel & Softaculous",
       "Daily Backups",
-      "Priority Support"
+      "Priority Support",
+      "Free CDN"
     ],
-    ctaText: "Most Popular!"
+    ctaText: "Most Popular"
   },
   {
     name: "Business",
     price: "£7.99",
     period: "month",
+    yearlyPrice: "£6.39",
+    biannualPrice: "£5.59",
+    triannualPrice: "£4.99",
+    description: "For high-traffic websites and agencies",
     features: [
       "Unlimited Websites",
       "100 GB SSD Storage",
-      "Unlimited Bandwidth",
+      "Unmetered Bandwidth",
       "Free Wildcard SSL",
       "Advanced Security",
-      "Premium Support",
-      "Advanced Analytics"
+      "Phone & Chat Support",
+      "Advanced Analytics",
+      "Performance Optimization"
     ],
     ctaText: "Upgrade Now"
   }
@@ -57,10 +70,12 @@ const sharedHostingTemplate = {
   sections: [
     {
       id: "shared-hero",
-      component: "HeroSection",
+      component: "HostingHeroSection",
       props: {
         title: "Shared Web Hosting",
-        description: "Perfect for small websites, blogs, and personal projects. Reliable, fast, and affordable shared hosting solutions."
+        subtitle: "Fast, Reliable, Affordable",
+        description: "Perfect for small websites, blogs, and personal projects. Get online with our feature-rich shared hosting solutions.",
+        showDomainSearch: true
       }
     },
     {
@@ -73,8 +88,12 @@ const sharedHostingTemplate = {
       }
     },
     {
-      id: "shared-services",
-      component: "ServicesSection"
+      id: "shared-features",
+      component: "FeaturesSection",
+      props: {
+        title: "Everything You Need to Succeed Online",
+        subtitle: "Shared hosting packed with premium features"
+      }
     },
     {
       id: "shared-contact",

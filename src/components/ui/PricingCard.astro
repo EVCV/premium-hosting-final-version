@@ -1,0 +1,326 @@
+---
+interface PricingPeriod {
+  period: string;
+  price: string;
+  originalPrice?: string;
+  savings?: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  features: string[];
+  pricing: PricingPeriod[];
+  isPopular?: boolean;
+  ctaText?: string;
+  ctaLink?: string;
+  className?: string;
+}
+
+const {
+  title,
+  description,
+  features,
+  pricing,
+  isPopular = false,
+  ctaText = "Get Started",
+  ctaLink = "#",
+  className = ""
+} = Astro.props;
+
+// Generate unique ID for this card's pricing switcher
+const cardId = `pricing-${Math.random().toString(36).substring(2, 11)}`;
+---
+
+<div class={`pricing-card ${isPopular ? 'popular' : ''} ${className}`}>
+  {isPopular && (
+    <div class="popular-badge">
+      <span class="goldhead">Most Popular</span>
+    </div>
+  )}
+  
+  <div class="card-content">
+    <div class="card-header">
+      <h3 class="text-2xl font-medium mb-3">{title}</h3>
+      <p class="text-gray-600 mb-6">{description}</p>
+    </div>
+
+    <div class="pricing-section">
+      <div class="period-switcher" data-card-id={cardId}>
+        {pricing.map((period, index) => (
+          <button 
+            class={`period-btn ${index === 0 ? 'active' : ''}`}
+            data-period={period.period}
+            data-price={period.price}
+            data-original-price={period.originalPrice || ''}
+            data-savings={period.savings || ''}
+          >
+            {period.period}
+          </button>
+        ))}
+      </div>
+
+      <div class="price-display">
+        <div class="price-main">
+          <span class="currency">$</span>
+          <span class="amount" data-card-id={cardId}>{pricing[0].price}</span>
+          <span class="period-text">/mo</span>
+        </div>
+        {pricing[0].originalPrice && (
+          <div class="price-original">
+            <span class="line-through text-gray-400">${pricing[0].originalPrice}/mo</span>
+            {pricing[0].savings && (
+              <span class="savings-badge ml-2">{pricing[0].savings} OFF</span>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+
+    <div class="features-section">
+      <ul class="features-list">
+        {features.map(feature => (
+          <li class="feature-item">
+            <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="cta-section">
+      <a href={ctaLink} class={`cta-button ${isPopular ? 'btn-primary' : 'btn-secondary'}`}>
+        {ctaText}
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .pricing-card {
+    background: white;
+    border-radius: 20px;
+    border: 2px solid #f3f3f3;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    border-color: var(--gold);
+  }
+
+  .pricing-card.popular {
+    border-color: var(--gold);
+    border-width: 3px;
+    transform: scale(1.05);
+  }
+
+  .pricing-card.popular:hover {
+    transform: scale(1.05) translateY(-8px);
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  .card-content {
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-header {
+    text-align: center;
+  }
+
+  .pricing-section {
+    margin-bottom: 2rem;
+  }
+
+  .period-switcher {
+    display: flex;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 1.5rem;
+    gap: 2px;
+  }
+
+  .period-btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #6b7280;
+  }
+
+  .period-btn.active {
+    background: var(--gold);
+    color: black;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+  }
+
+  .period-btn:hover:not(.active) {
+    background: rgba(212, 175, 55, 0.1);
+    color: #374151;
+  }
+
+  .price-display {
+    text-align: center;
+  }
+
+  .price-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .currency {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-right: 0.25rem;
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  .amount {
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .period-text {
+    font-size: 1.125rem;
+    color: #6b7280;
+    margin-left: 0.25rem;
+    align-self: flex-end;
+    margin-bottom: 0.5rem;
+  }
+
+  .price-original {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .savings-badge {
+    background: #dc2626;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .features-section {
+    flex: 1;
+    margin-bottom: 2rem;
+  }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .feature-item:last-child {
+    border-bottom: none;
+  }
+
+  .feature-check {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--gold);
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .cta-section {
+    margin-top: auto;
+  }
+
+  .cta-button {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: block;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const periodSwitchers = document.querySelectorAll('.period-switcher');
+
+    periodSwitchers.forEach(switcher => {
+      const cardId = (switcher as HTMLElement).dataset.cardId;
+      const periodBtns = switcher.querySelectorAll('.period-btn');
+      const priceAmount = document.querySelector(`[data-card-id="${cardId}"].amount`);
+      const priceOriginal = switcher.closest('.pricing-card')?.querySelector('.price-original') as HTMLElement;
+
+      periodBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Remove active class from all buttons in this switcher
+          periodBtns.forEach(b => b.classList.remove('active'));
+          
+          // Add active class to clicked button
+          btn.classList.add('active');
+
+          // Update price display
+          const newPrice = (btn as HTMLElement).dataset.price;
+          const originalPrice = (btn as HTMLElement).dataset.originalPrice;
+          const savings = (btn as HTMLElement).dataset.savings;
+
+          if (priceAmount && newPrice) {
+            priceAmount.textContent = newPrice;
+          }
+
+          // Update original price and savings
+          if (priceOriginal) {
+            if (originalPrice && savings) {
+              priceOriginal.innerHTML = `
+                <span class="line-through text-gray-400">$${originalPrice}/mo</span>
+                <span class="savings-badge ml-2">${savings} OFF</span>
+              `;
+              priceOriginal.style.display = 'flex';
+            } else {
+              priceOriginal.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+  });
+</script>

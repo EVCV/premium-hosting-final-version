@@ -1,0 +1,152 @@
+---
+import BaseTemplate from '../templates/layouts/BaseTemplate.astro';
+import TemplateRenderer from '../components/TemplateRenderer.astro';
+
+const vpsPlans = [
+  {
+    name: "VPS Basic",
+    price: "£19.99",
+    period: "month",
+    yearlyPrice: "£15.99",
+    biannualPrice: "£13.99",
+    description: "Perfect for growing websites and small applications",
+    features: [
+      "2 CPU Cores",
+      "4 GB RAM",
+      "80 GB SSD Storage",
+      "2 TB Bandwidth",
+      "Root Access",
+      "Free SSL Certificate",
+      "cPanel/WHM Included",
+      "24/7 Support"
+    ],
+    ctaText: "Get Started"
+  },
+  {
+    name: "VPS Pro",
+    price: "£39.99",
+    period: "month",
+    yearlyPrice: "£31.99",
+    biannualPrice: "£27.99",
+    triannualPrice: "£23.99",
+    popular: true,
+    description: "Ideal for business websites and applications",
+    features: [
+      "4 CPU Cores",
+      "8 GB RAM",
+      "160 GB SSD Storage",
+      "4 TB Bandwidth",
+      "Root Access",
+      "Free SSL Certificate",
+      "cPanel/WHM Included",
+      "Snapshot Backups",
+      "Priority Support"
+    ],
+    ctaText: "Most Popular"
+  },
+  {
+    name: "VPS Enterprise",
+    price: "£79.99",
+    period: "month",
+    yearlyPrice: "£63.99",
+    biannualPrice: "£55.99",
+    triannualPrice: "£47.99",
+    description: "For high-performance applications and websites",
+    features: [
+      "8 CPU Cores",
+      "16 GB RAM",
+      "320 GB SSD Storage",
+      "8 TB Bandwidth",
+      "Root Access",
+      "Free SSL Certificate",
+      "cPanel/WHM Included",
+      "Automated Backups",
+      "DDoS Protection",
+      "Premium Support"
+    ],
+    ctaText: "Upgrade Now"
+  }
+];
+
+// VPS hosting template configuration
+const vpsTemplate = {
+  layout: "BaseTemplate",
+  sections: [
+    {
+      id: "vps-hero",
+      component: "HostingHeroSection",
+      props: {
+        title: "VPS Hosting",
+        subtitle: "Powerful, Scalable, Flexible",
+        description: "Get the power and control of a dedicated server at a fraction of the cost. Our VPS hosting provides guaranteed resources and full root access.",
+        showDomainSearch: false
+      }
+    },
+    {
+      id: "vps-pricing",
+      component: "PricingSection",
+      props: {
+        plans: vpsPlans,
+        title: "VPS Hosting Plans",
+        description: "Choose from our range of VPS packages with guaranteed resources and full control"
+      }
+    },
+    {
+      id: "vps-features",
+      component: "FeaturesSection",
+      props: {
+        title: "VPS Hosting Features",
+        subtitle: "Enterprise-grade virtual servers",
+        description: "Our VPS hosting provides the perfect balance of performance, control, and affordability for growing businesses.",
+        features: [
+          {
+            icon: "🖥️",
+            title: "Guaranteed Resources",
+            description: "Dedicated CPU, RAM, and storage that's never shared with other users for consistent performance."
+          },
+          {
+            icon: "🔑",
+            title: "Full Root Access",
+            description: "Complete administrative control over your server environment with root/administrator access."
+          },
+          {
+            icon: "⚡",
+            title: "SSD Storage",
+            description: "Ultra-fast SSD storage for superior performance and faster data access speeds."
+          },
+          {
+            icon: "🔄",
+            title: "Instant Provisioning",
+            description: "Your VPS is deployed and ready to use within minutes of order confirmation."
+          },
+          {
+            icon: "📊",
+            title: "Resource Monitoring",
+            description: "Real-time monitoring and alerts to track your server's performance and resource usage."
+          },
+          {
+            icon: "🛡️",
+            title: "DDoS Protection",
+            description: "Advanced DDoS protection to keep your server online and your data secure."
+          }
+        ]
+      }
+    },
+    {
+      id: "vps-contact",
+      component: "ContactSection"
+    }
+  ]
+};
+
+// Page data
+const pageData = {
+  pageType: 'hosting',
+  title: "VPS Hosting - Virtual Private Server Hosting Solutions",
+  description: "Powerful VPS hosting with guaranteed resources, full root access, and SSD storage. Perfect for growing businesses and applications."
+};
+---
+
+<BaseTemplate title={pageData.title} description={pageData.description}>
+  <TemplateRenderer template={vpsTemplate} data={pageData} />
+</BaseTemplate>

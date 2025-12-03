@@ -1,0 +1,88 @@
+---
+import BaseTemplate from '../templates/layouts/BaseTemplate.astro';
+import DomainSearch from '../components/ui/DomainSearch.astro';
+
+const pageData = {
+  title: "Domain Registration - Register Your Perfect Domain Name",
+  description: "Search and register your perfect domain name with competitive pricing, free privacy protection, and easy management tools."
+};
+---
+
+<BaseTemplate title={pageData.title} description={pageData.description}>
+  <section class="pt-32 pb-24 bg-gradient-to-br from-gray-50 via-white to-gray-100 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center px-4 py-2 bg-gold/10 border border-gold/20 rounded-full mb-6">
+          <span class="text-dark font-medium text-sm">🌐 Over 400+ Domain Extensions</span>
+        </div>
+        
+        <h1 class="text-5xl lg:text-6xl font-bold text-dark mb-6">
+          Find Your Perfect Domain
+        </h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Secure your online identity with the perfect domain name. Search from hundreds of extensions and get your website online today.
+        </p>
+      </div>
+
+      <!-- Domain Search -->
+      <div class="mb-16">
+        <DomainSearch 
+          title=""
+          placeholder="Search for your perfect domain..."
+          className="max-w-4xl mx-auto"
+        />
+      </div>
+
+      <!-- Popular Extensions -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-dark mb-8">Popular Domain Extensions</h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-4xl mx-auto">
+          {[
+            { ext: '.com', price: '£12.99' },
+            { ext: '.co.uk', price: '£8.99' },
+            { ext: '.net', price: '£14.99' },
+            { ext: '.org', price: '£13.99' },
+            { ext: '.io', price: '£49.99' },
+            { ext: '.app', price: '£19.99' }
+          ].map(domain => (
+            <div class="luxury-card p-6 text-center group hover:border-gold">
+              <div class="text-2xl font-bold text-dark mb-2">{domain.ext}</div>
+              <div class="text-gold font-semibold">{domain.price}/year</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="luxury-card p-8 text-center">
+          <div class="text-4xl mb-4">🔒</div>
+          <h3 class="text-xl font-bold text-dark mb-4">Free Privacy Protection</h3>
+          <p class="text-gray-600">
+            Protect your personal information with free WHOIS privacy protection included with every domain.
+          </p>
+        </div>
+
+        <div class="luxury-card p-8 text-center">
+          <div class="text-4xl mb-4">🎛️</div>
+          <h3 class="text-xl font-bold text-dark mb-4">Easy Management</h3>
+          <p class="text-gray-600">
+            Manage all your domains from one simple control panel with DNS management and forwarding tools.
+          </p>
+        </div>
+
+        <div class="luxury-card p-8 text-center">
+          <div class="text-4xl mb-4">⚡</div>
+          <h3 class="text-xl font-bold text-dark mb-4">Instant Activation</h3>
+          <p class="text-gray-600">
+            Most domains are activated instantly so you can start building your website right away.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseTemplate>

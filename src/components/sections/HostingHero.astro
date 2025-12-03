@@ -1,0 +1,137 @@
+---
+import DomainSearch from "../ui/DomainSearch.astro";
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  showDomainSearch?: boolean;
+}
+
+const {
+  title = "Premium Web Hosting Solutions",
+  subtitle = "Fast, Secure, Reliable",
+  description = "Host your website with confidence. 99.9% uptime guarantee, SSD storage, and 24/7 expert support.",
+  showDomainSearch = true
+} = Astro.props;
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-100">
+  <!-- Background Elements -->
+  <div class="absolute inset-0 overflow-hidden">
+    <!-- Floating geometric shapes -->
+    <div class="absolute top-20 left-10 w-32 h-32 bg-gold/10 rounded-full floating" style="animation-delay: 0s;"></div>
+    <div class="absolute top-40 right-20 w-24 h-24 bg-dark/10 rounded-lg floating" style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-32 left-1/4 w-20 h-20 bg-gold/20 rounded-full floating" style="animation-delay: 2s;"></div>
+    <div class="absolute bottom-20 right-10 w-28 h-28 bg-dark/15 rounded-lg floating" style="animation-delay: 1.5s;"></div>
+    
+    <!-- Grid pattern -->
+    <div class="absolute inset-0 opacity-20 bg-gradient-to-br from-gold/5 to-dark/5"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="max-w-4xl mx-auto">
+      <!-- Badge -->
+      <div class="inline-flex items-center px-4 py-2 bg-gold/10 border border-gold/20 rounded-full mb-8 glow-on-hover">
+        <span class="w-2 h-2 bg-green-500 rounded-full mr-3 animate-pulse"></span>
+        <span class="text-dark font-medium text-sm">99.9% Uptime Guaranteed</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-5xl lg:text-7xl font-bold text-dark mb-6 leading-tight">
+        {subtitle.split(' ').map((word, index) => (
+          <span class={index === 1 ? 'text-gold' : ''}>{word} </span>
+        ))}
+        <br />
+        <span class="text-4xl lg:text-6xl">{title.split(' ').slice(-2).join(' ')}</span>
+      </h1>
+
+      <!-- Description -->
+      <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+        {description}
+      </p>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-12 max-w-4xl mx-auto">
+        <div class="luxury-card p-6">
+          <div class="text-3xl font-bold text-dark mb-2">99.9%</div>
+          <div class="text-sm text-gray-600">Uptime</div>
+        </div>
+        <div class="luxury-card p-6">
+          <div class="text-3xl font-bold text-dark mb-2">24/7</div>
+          <div class="text-sm text-gray-600">Support</div>
+        </div>
+        <div class="luxury-card p-6">
+          <div class="text-3xl font-bold text-dark mb-2">SSD</div>
+          <div class="text-sm text-gray-600">Storage</div>
+        </div>
+        <div class="luxury-card p-6">
+          <div class="text-3xl font-bold text-dark mb-2">Free</div>
+          <div class="text-sm text-gray-600">SSL</div>
+        </div>
+      </div>
+
+      <!-- Domain Search -->
+      {showDomainSearch && (
+        <div class="mb-12">
+          <DomainSearch 
+            title=""
+            placeholder="Find your perfect domain..."
+            className="max-w-4xl mx-auto"
+          />
+        </div>
+      )}
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+        <a href="#pricing" class="btn-primary text-lg px-8 py-4 ripple">
+          View Hosting Plans
+        </a>
+        <a href="/contact" class="btn-secondary text-lg px-8 py-4">
+          Talk to Expert
+        </a>
+      </div>
+
+      <!-- Trust Indicators -->
+      <div class="mt-16 flex flex-wrap justify-center items-center gap-8 opacity-60">
+        <div class="flex items-center space-x-2">
+          <span class="text-green-500">✓</span>
+          <span class="text-sm text-gray-600">30-Day Money Back</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="text-green-500">✓</span>
+          <span class="text-sm text-gray-600">Free Website Migration</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="text-green-500">✓</span>
+          <span class="text-sm text-gray-600">No Setup Fees</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <div class="w-6 h-10 border-2 border-gold rounded-full flex justify-center">
+      <div class="w-1 h-3 bg-gold rounded-full mt-2 animate-pulse"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .floating {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .floating:nth-child(2) {
+    animation: float 3s ease-in-out infinite reverse;
+  }
+  
+  .floating:nth-child(3) {
+    animation: float 2s ease-in-out infinite;
+  }
+  
+  .floating:nth-child(4) {
+    animation: float 4s ease-in-out infinite reverse;
+  }
+</style>

@@ -1,4 +1,6 @@
 ---
+import PricingCard from "../../components/ui/PricingCard.astro";
+
 interface PricingPlan {
   name: string;
   price: string;
@@ -6,71 +8,311 @@ interface PricingPlan {
   features: string[];
   popular?: boolean;
   ctaText?: string;
+  yearlyPrice?: string;
+  biannualPrice?: string;
+  triannualPrice?: string;
+  description?: string;
 }
 
 interface Props {
   plans: PricingPlan[];
   title?: string;
   description?: string;
+  showGlobalSwitcher?: boolean;
 }
 
 const {
-  plans,
-  title = "Choose Your Plan",
-  description = "Select the perfect hosting plan for your needs"
+  plans = [],
+  title = "Choose Your Hosting Plan",
+  description = "Professional hosting solutions with enterprise-grade infrastructure",
+  showGlobalSwitcher = true
 } = Astro.props;
+
+// Transform plans data to match PricingCard component
+const transformedPlans = plans.map((plan) => {
+  // Create pricing periods based on the plan data
+  const pricing = [
+    {
+      period: "Monthly",
+      price: plan.price?.replace('£', '') || "0"
+    },
+    ...(plan.yearlyPrice ? [{
+      period: "Yearly",
+      price: plan.yearlyPrice.replace('£', ''),
+      savings: "Save 20%"
+    }] : []),
+    ...(plan.biannualPrice ? [{
+      period: "2 Years",
+      price: plan.biannualPrice.replace('£', ''),
+      savings: "Save 30%"
+    }] : []),
+    ...(plan.triannualPrice ? [{
+      period: "3 Years",
+      price: plan.triannualPrice.replace('£', ''),
+      savings: "Save 40%"
+    }] : [])
+  ];
+
+  return {
+    title: plan.name,
+    description: plan.description || `Perfect for ${plan.name.toLowerCase()} websites`,
+    features: plan.features || [],
+    pricing: pricing,
+    isPopular: plan.popular || false,
+    ctaText: plan.ctaText || "Get Started",
+    ctaLink: "/order"
+  };
+});
 ---
 
-<section class="pricing-section">
-  <div class="container mx-auto px-4 py-16">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">{description}</p>
+<section id="pricing" class="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+  <!-- Background decoration -->
+  <div class="absolute inset-0">
+    <div class="absolute top-20 left-10 w-40 h-40 bg-gold/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-32 right-10 w-56 h-56 bg-dark/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center px-4 py-2 bg-gold/10 border border-gold/20 rounded-full mb-6">
+        <span class="text-dark font-medium text-sm">💰 No Setup Fees • 30-Day Money Back Guarantee</span>
+      </div>
+      
+      <h2 class="text-4xl lg:text-5xl font-bold text-dark mb-6">
+        {title}
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        {description}
+      </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-      {plans.map((plan) => (
-        <div class=`pricing-card p-6 rounded-lg border-2 ${plan.popular ? 'border-blue-500 relative' : 'border-gray-200'} bg-white shadow-lg hover:shadow-xl transition-shadow duration-300`>
-          {plan.popular && (
-            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
-              <span class="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
-            </div>
-          )}
-
-          <div class="text-center mb-6">
-            <h3 class="text-xl font-bold mb-2">{plan.name}</h3>
-            <div class="flex items-baseline justify-center">
-              <span class="text-4xl font-bold">{plan.price}</span>
-              <span class="text-gray-600 ml-1">/{plan.period}</span>
-            </div>
-          </div>
-
-          <ul class="space-y-3 mb-6">
-            {plan.features.map((feature) => (
-              <li class="flex items-center">
-                <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-gray-700">{feature}</span>
-              </li>
-            ))}
-          </ul>
-
-          <button class=`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-200 ${plan.popular ? 'bg-blue-500 text-white hover:bg-blue-600' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>
-            {plan.ctaText || 'Get Started'}
+    {showGlobalSwitcher && transformedPlans.some(p => p.pricing.length > 1) && (
+      <!-- Global Period Switcher -->
+      <div class="flex justify-center mb-12">
+        <div class="global-period-switcher bg-white rounded-2xl p-2 shadow-lg border border-gray-200">
+          <button class="period-global-btn active" data-period="monthly">
+            Monthly
+          </button>
+          <button class="period-global-btn" data-period="yearly">
+            <span>Yearly</span>
+            <span class="savings-tag">Save 20%</span>
+          </button>
+          <button class="period-global-btn" data-period="biannual">
+            <span>2 Years</span>
+            <span class="savings-tag">Save 30%</span>
           </button>
         </div>
-      ))}
+      </div>
+    )}
+
+    <!-- Pricing Cards -->
+    {transformedPlans.length > 0 && (
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {transformedPlans.map((plan, index) => (
+          <div class="pricing-card-wrapper" style={`animation-delay: ${index * 0.1}s`}>
+            <PricingCard
+              title={plan.title}
+              description={plan.description}
+              features={plan.features}
+              pricing={plan.pricing}
+              isPopular={plan.isPopular}
+              ctaText={plan.ctaText}
+              ctaLink={plan.ctaLink}
+              className="h-full"
+            />
+          </div>
+        ))}
+      </div>
+    )}
+
+    {transformedPlans.length === 0 && (
+      <!-- Default pricing cards if no plans provided -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <PricingCard
+          title="Starter"
+          description="Perfect for personal websites and blogs"
+          features={[
+            "1 Website",
+            "10 GB SSD Storage",
+            "Unmetered Bandwidth",
+            "Free SSL Certificate",
+            "24/7 Email Support",
+            "cPanel Control Panel"
+          ]}
+          pricing={[
+            { period: "Monthly", price: "2.99" },
+            { period: "Yearly", price: "2.39", savings: "Save 20%" },
+            { period: "2 Years", price: "2.09", savings: "Save 30%" }
+          ]}
+          ctaText="Get Started"
+        />
+        
+        <PricingCard
+          title="Professional"
+          description="Ideal for growing businesses"
+          features={[
+            "Unlimited Websites",
+            "50 GB SSD Storage",
+            "Unmetered Bandwidth",
+            "Free SSL Certificate",
+            "24/7 Priority Support",
+            "Daily Backups",
+            "Advanced Security"
+          ]}
+          pricing={[
+            { period: "Monthly", price: "4.99" },
+            { period: "Yearly", price: "3.99", savings: "Save 20%" },
+            { period: "2 Years", price: "3.49", savings: "Save 30%" }
+          ]}
+          isPopular={true}
+          ctaText="Most Popular"
+        />
+        
+        <PricingCard
+          title="Business"
+          description="For high-traffic websites"
+          features={[
+            "Unlimited Websites",
+            "100 GB SSD Storage",
+            "Unmetered Bandwidth",
+            "Free Wildcard SSL",
+            "Phone & Chat Support",
+            "Advanced Backups",
+            "Performance Optimization",
+            "Free CDN"
+          ]}
+          pricing={[
+            { period: "Monthly", price: "7.99" },
+            { period: "Yearly", price: "6.39", savings: "Save 20%" },
+            { period: "2 Years", price: "5.59", savings: "Save 30%" }
+          ]}
+          ctaText="Upgrade Now"
+        />
+      </div>
+    )}
+
+    <!-- Bottom CTA -->
+    <div class="text-center mt-16">
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 max-w-2xl mx-auto luxury-card">
+        <h3 class="text-2xl font-bold text-dark mb-4">Need a Custom Solution?</h3>
+        <p class="text-gray-600 mb-6">
+          Get in touch with our hosting experts for enterprise-grade solutions tailored to your specific requirements.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="btn-primary">
+            Contact Sales
+          </a>
+          <a href="/enterprise" class="btn-secondary">
+            Enterprise Solutions
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .pricing-card {
+  .pricing-card-wrapper {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .global-period-switcher {
+    display: flex;
+    gap: 4px;
+  }
+
+  .period-global-btn {
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #6b7280;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
   }
 
-  .pricing-card:hover {
-    transform: translateY(-2px);
+  .period-global-btn.active {
+    background: var(--gold);
+    color: black;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  }
+
+  .period-global-btn:hover:not(.active) {
+    background: rgba(212, 175, 55, 0.1);
+    color: #374151;
+  }
+
+  .savings-tag {
+    font-size: 0.75rem;
+    background: #dc2626;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 2px;
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const globalSwitcher = document.querySelector('.global-period-switcher');
+    if (!globalSwitcher) return;
+
+    const globalBtns = globalSwitcher.querySelectorAll('.period-global-btn');
+    const allPricingCards = document.querySelectorAll('.pricing-card');
+
+    globalBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selectedPeriod = (btn as HTMLElement).dataset.period;
+        
+        // Update global switcher
+        globalBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update all pricing cards
+        allPricingCards.forEach(card => {
+          const periodSwitcher = card.querySelector('.period-switcher');
+          if (periodSwitcher) {
+            const cardBtns = periodSwitcher.querySelectorAll('.period-btn');
+            
+            // Find the matching period button in each card
+            cardBtns.forEach(cardBtn => {
+              const btnText = cardBtn.textContent?.toLowerCase().trim();
+              let matches = false;
+
+              switch(selectedPeriod) {
+                case 'monthly':
+                  matches = btnText === 'monthly';
+                  break;
+                case 'yearly':
+                  matches = btnText === 'yearly';
+                  break;
+                case 'biannual':
+                  matches = btnText === '2 years';
+                  break;
+              }
+
+              if (matches) {
+                (cardBtn as HTMLButtonElement).click(); // Trigger the card's own period switch
+              }
+            });
+          }
+        });
+      });
+    });
+  });
+</script>
