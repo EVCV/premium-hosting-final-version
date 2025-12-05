@@ -1,0 +1,34 @@
+{
+  "hostingFeatures": [
+    {
+      "icon": "⚡",
+      "title": "Lightning Fast Performance",
+      "description": "SSD storage and optimized servers ensure your website loads in milliseconds, not seconds."
+    },
+    {
+      "icon": "🔒",
+      "title": "Advanced Security",
+      "description": "Free SSL certificates, DDoS protection, and daily security scans keep your site secure."
+    },
+    {
+      "icon": "🔄",
+      "title": "Daily Backups",
+      "description": "Automated daily backups ensure your data is always safe and easily recoverable."
+    },
+    {
+      "icon": "📞",
+      "title": "24/7 Expert Support",
+      "description": "Our certified support team is available around the clock to help with any questions."
+    },
+    {
+      "icon": "🎛️",
+      "title": "cPanel Control Panel",
+      "description": "Industry-standard cPanel gives you full control over your hosting environment."
+    },
+    {
+      "icon": "📈",
+      "title": "99.9% Uptime Guarantee",
+      "description": "Your website stays online with our industry-leading uptime guarantee and monitoring."
+    }
+  ]
+}

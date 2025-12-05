@@ -1,7 +1,6 @@
 ---
+// Section Components
 import Hero from '../components/sections/Hero.astro';
-import HostingHero from '../components/sections/HostingHero.astro';
-import Features from '../components/sections/Features.astro';
 import Sponsors from '../components/sections/Sponsors.astro';
 import Services from '../components/sections/Services.astro';
 import Team from '../components/sections/Team.astro';
@@ -10,6 +9,28 @@ import Cases from '../components/sections/Cases.astro';
 import Contact from '../components/sections/Contact.astro';
 import PricingSection from '../templates/sections/PricingSection.astro';
 import PostContent from '../templates/sections/PostContent.astro';
+
+// Block Components
+import HeroBlock from '../components/blocks/HeroBlock.astro';
+import StatsBlock from '../components/blocks/StatsBlock.astro';
+import DomainSearchBlock from '../components/blocks/DomainSearchBlock.astro';
+import TrustIndicatorsBlock from '../components/blocks/TrustIndicatorsBlock.astro';
+import SectionHeaderBlock from '../components/blocks/SectionHeaderBlock.astro';
+import CTABlock from '../components/blocks/CTABlock.astro';
+import GridLayoutBlock from '../components/blocks/GridLayoutBlock.astro';
+import FeatureGridBlock from '../components/blocks/FeatureGridBlock.astro';
+import BackgroundElementsBlock from '../components/blocks/BackgroundElementsBlock.astro';
+import TestimonialsPlaceholderBlock from '../components/blocks/TestimonialsPlaceholderBlock.astro';
+import Services3ColumnBlock from '../components/blocks/Services3ColumnBlock.astro';
+import PricingComparisonBlock from '../components/blocks/PricingComparisonBlock.astro';
+import ServerSpecsBlock from '../components/blocks/ServerSpecsBlock.astro';
+import SecurityBadgesBlock from '../components/blocks/SecurityBadgesBlock.astro';
+import ServiceFeatureBlock from '../components/blocks/ServiceFeatureBlock.astro';
+import WordPressHostingBlock from '../components/blocks/WordPressHostingBlock.astro';
+import VPSHostingBlock from '../components/blocks/VPSHostingBlock.astro';
+import CloudHostingBlock from '../components/blocks/CloudHostingBlock.astro';
+import PageBuilderBlock from '../components/blocks/PageBuilderBlock.astro';
+import DedicatedHostingBlock from '../components/blocks/DedicatedHostingBlock.astro';
 
 interface SectionConfig {
   id: string;
@@ -31,9 +52,8 @@ const { template, data } = Astro.props;
 
 // Component registry for direct access (matches template.json naming)
 const components = {
+  // Section Components
   HeroSection: Hero,
-  HostingHeroSection: HostingHero,
-  FeaturesSection: Features,
   SponsorsSection: Sponsors,
   ServicesSection: Services,
   TeamSection: Team,
@@ -41,7 +61,29 @@ const components = {
   CasesSection: Cases,
   ContactSection: Contact,
   PricingSection,
-  PostContent
+  PostContent,
+  
+  // Block Components
+  HeroBlock,
+  StatsBlock,
+  DomainSearchBlock,
+  TrustIndicatorsBlock,
+  SectionHeaderBlock,
+  CTABlock,
+  GridLayoutBlock,
+  FeatureGridBlock,
+  BackgroundElementsBlock,
+  TestimonialsPlaceholderBlock,
+  Services3ColumnBlock,
+  PricingComparisonBlock,
+  ServerSpecsBlock,
+  SecurityBadgesBlock,
+  ServiceFeatureBlock,
+  WordPressHostingBlock,
+  VPSHostingBlock,
+  CloudHostingBlock,
+  PageBuilderBlock,
+  DedicatedHostingBlock
 };
 ---2
 

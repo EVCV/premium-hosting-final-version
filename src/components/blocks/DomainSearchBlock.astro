@@ -1,0 +1,34 @@
+---
+import DomainSearch from "../ui/DomainSearch.astro";
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  placeholder?: string;
+  className?: string;
+  showTitle?: boolean;
+}
+
+const {
+  title = "Find Your Perfect Domain",
+  subtitle = "Search for available domains and start your online journey today.",
+  placeholder = "Find your perfect domain...",
+  className = "max-w-4xl mx-auto",
+  showTitle = false
+} = Astro.props;
+---
+
+<section class={`py-16 ${className}`}>
+  {showTitle && (
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold text-dark mb-4">{title}</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
+    </div>
+  )}
+  
+  <DomainSearch 
+    title=""
+    placeholder={placeholder}
+    className="w-full"
+  />
+</section>

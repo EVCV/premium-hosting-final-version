@@ -1,0 +1,29 @@
+---
+interface TrustIndicator {
+  text: string;
+  icon?: string;
+}
+
+interface Props {
+  indicators?: TrustIndicator[];
+  className?: string;
+}
+
+const {
+  indicators = [
+    { text: "30-Day Money Back", icon: "✓" },
+    { text: "Free Website Migration", icon: "✓" },
+    { text: "No Setup Fees", icon: "✓" }
+  ],
+  className = ""
+} = Astro.props;
+---
+
+<div class={`flex flex-wrap justify-center items-center gap-8 opacity-60 ${className}`}>
+  {indicators.map((indicator) => (
+    <div class="flex items-center space-x-2">
+      <span class="text-green-500">{indicator.icon || "✓"}</span>
+      <span class="text-sm text-gray-600">{indicator.text}</span>
+    </div>
+  ))}
+</div>

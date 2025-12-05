@@ -1,0 +1,43 @@
+---
+import ServiceFeatureBlock from "./ServiceFeatureBlock.astro";
+
+interface Props {
+  className?: string;
+  imagePosition?: 'left' | 'right';
+  backgroundColor?: string;
+  customTitle?: string;
+  customDescription?: string;
+  customLink?: {
+    text: string;
+    href: string;
+  };
+}
+
+const {
+  className = "",
+  imagePosition = 'left',
+  backgroundColor = "bg-white",
+  customTitle = "Dedicated Servers",
+  customDescription = "Ultimate performance with dedicated hardware exclusively for your projects. Full server control, enterprise SLAs, and premium support for high-demand applications.",
+  customLink = {
+    text: "Configure Dedicated Server",
+    href: "/dedicated-hosting"
+  }
+} = Astro.props;
+
+// Placeholder image - replace with actual Dedicated hosting image
+const dedicatedImage = {
+  src: "https://via.placeholder.com/600x400/DC2626/white?text=Dedicated+Servers",
+  alt: "Dedicated Servers"
+};
+---
+
+<ServiceFeatureBlock
+  title={customTitle}
+  description={customDescription}
+  image={dedicatedImage}
+  link={customLink}
+  imagePosition={imagePosition}
+  className={className}
+  backgroundColor={backgroundColor}
+/>

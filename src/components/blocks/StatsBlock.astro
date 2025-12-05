@@ -1,0 +1,30 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  stats?: Stat[];
+  className?: string;
+}
+
+const {
+  stats = [
+    { value: "99.9%", label: "Uptime" },
+    { value: "24/7", label: "Support" },
+    { value: "SSD", label: "Storage" },
+    { value: "Free", label: "SSL" }
+  ],
+  className = ""
+} = Astro.props;
+---
+
+<div class={`grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto ${className}`}>
+  {stats.map((stat) => (
+    <div class="luxury-card p-6">
+      <div class="text-3xl font-bold text-dark mb-2">{stat.value}</div>
+      <div class="text-sm text-gray-600">{stat.label}</div>
+    </div>
+  ))}
+</div>

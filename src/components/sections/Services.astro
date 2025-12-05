@@ -3,81 +3,41 @@ import SectionTitle from "../ui/SectionTitle.astro";
 import ServiceCard from "../ui/ServiceCard.astro";
 import Section from "./Section.astro";
 
-import c1 from "../../assets/pics/card-pic1.png";
-import c2 from "../../assets/pics/card-pic2.png";
-import c3 from "../../assets/pics/card-pic3.png";
-import c4 from "../../assets/pics/card-pic4.png";
-import c5 from "../../assets/pics/card-pic5.png";
-import c6 from "../../assets/pics/card-pic6.png";
+import servicesData from "../../data/services.json";
 
-const cards = [
-  {
-    index: 1,
-    titleTop: "Search Engine",
-    titleBottom: "Optimization",
-    img: c1,
-    alt: "SEO",
-    link: "https://google.com",
-  },
-  {
-    index: 2,
-    titleTop: "Pay-per-click",
-    titleBottom: "advertising",
-    img: c2,
-    alt: "SEO",
-    link: "https://google.com",
-  },
-  {
-    index: 3,
-    titleTop: "Social Media",
-    titleBottom: "Marketing",
-    img: c3,
-    alt: "SEO",
-    link: "https://google.com",
-  },
-  {
-    index: 1,
-    titleTop: "Email",
-    titleBottom: "Marketing",
-    img: c4,
-    alt: "SEO",
-    link: "https://google.com",
-  },
-  {
-    index: 2,
-    titleTop: "Content",
-    titleBottom: "Creation",
-    img: c5,
-    alt: "SEO",
-    link: "https://google.com",
-  },
-  {
-    index: 3,
-    titleTop: "Analytics and",
-    titleBottom: "Tracking",
-    img: c6,
-    alt: "SEO",
-    link: "https://google.com",
-  },
-];
+interface Props {
+  services?: Array<{
+    index: number;
+    titleTop: string;
+    titleBottom: string;
+    img: any;
+    alt: string;
+    link: string;
+  }>;
+  title?: string;
+  description?: string;
+}
 
-const description =
-  "At our digital marketing agency, we offer a range of services to help businesses grow and succeed online. These services include";
+const {
+  services = servicesData.hostingServices,
+  title = "Our Hosting Services",
+  description = "Comprehensive hosting solutions designed to power your online presence with reliability, speed, and expert support."
+} = Astro.props;
 ---
 
 <Section>
   <div class="mt-[140px] mb-5">
-    <SectionTitle sectionTitle="Services" description={description} />
-    <div class="grid lg:grid-cols-2 lg:grid-rows-3 gap-10">
+    <SectionTitle sectionTitle={title} description={description} />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       {
-        cards.map((card) => (
+        services.map((service) => (
           <ServiceCard
-            index={card.index}
-            titleTop={card.titleTop}
-            titleBottom={card.titleBottom}
-            img={card.img}
-            alt={card.alt}
-            link={card.link}
+            index={service.index}
+            titleTop={service.titleTop}
+            titleBottom={service.titleBottom}
+            img={service.img}
+            alt={service.alt}
+            link={service.link}
           />
         ))
       }

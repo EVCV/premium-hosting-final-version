@@ -1,0 +1,26 @@
+---
+interface Props {
+  className?: string;
+  height?: string;
+}
+
+const {
+  className = "",
+  height = "400px"
+} = Astro.props;
+---
+
+<section class={`py-16 bg-gray-50 ${className}`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Placeholder for testimonials snippet -->
+    <div 
+      class="w-full border-2 border-dashed border-gray-300 bg-white rounded-lg flex items-center justify-center"
+      style={`min-height: ${height}`}
+    >
+      <div class="text-center text-gray-500">
+        <h3 class="text-lg font-medium mb-2">Testimonials Section</h3>
+        <p class="text-sm">Insert your testimonials snippet here</p>
+      </div>
+    </div>
+  </div>
+</section>

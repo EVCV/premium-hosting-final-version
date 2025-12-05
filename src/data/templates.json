@@ -4,20 +4,36 @@
     "sections": [
       {
         "id": "hero",
-        "component": "HostingHeroSection",
+        "component": "HeroBlock",
         "props": {
           "title": "Premium Web Hosting Solutions",
           "subtitle": "Fast, Secure, Reliable",
           "description": "Host your website with confidence. 99.9% uptime guarantee, SSD storage, and 24/7 expert support.",
-          "showDomainSearch": true
+          "showBadge": true,
+          "badgeText": "99.9% Uptime Guaranteed",
+          "showStats": true,
+          "showDomainSearch": true,
+          "showTrustIndicators": true,
+          "showScrollIndicator": true,
+          "backgroundPreset": "floating",
+          "primaryCTA": {
+            "text": "View Hosting Plans",
+            "href": "#pricing"
+          },
+          "secondaryCTA": {
+            "text": "Talk to Expert",
+            "href": "/contact"
+          }
         }
       },
       {
         "id": "pricing",
-        "component": "PricingSection",
+        "component": "PricingComparisonBlock",
         "props": {
           "title": "Hosting Plans for Every Need",
-          "description": "From personal blogs to enterprise websites, we have the perfect hosting solution for you."
+          "subtitle": "From personal blogs to enterprise websites, we have the perfect hosting solution for you.",
+          "showComparison": true,
+          "showGlobalSwitcher": true
         }
       },
       {
@@ -79,6 +95,138 @@
       {
         "id": "default-hero",
         "component": "HeroSection"
+      }
+    ]
+  },
+  "homepage-granular": {
+    "layout": "BaseTemplate",
+    "sections": [
+      {
+        "id": "hero-block",
+        "component": "HeroBlock",
+        "props": {
+          "title": "Premium Web Hosting Solutions",
+          "subtitle": "Fast, Secure, Reliable",
+          "description": "Host your website with confidence. 99.9% uptime guarantee, SSD storage, and 24/7 expert support.",
+          "showBadge": true,
+          "badgeText": "99.9% Uptime Guaranteed",
+          "primaryCTA": {
+            "text": "View Hosting Plans",
+            "href": "#pricing"
+          },
+          "secondaryCTA": {
+            "text": "Talk to Expert",
+            "href": "/contact"
+          }
+        }
+      },
+      {
+        "id": "stats",
+        "component": "StatsBlock",
+        "props": {
+          "className": "py-16",
+          "stats": [
+            { "value": "99.9%", "label": "Uptime" },
+            { "value": "24/7", "label": "Support" },
+            { "value": "SSD", "label": "Storage" },
+            { "value": "Free", "label": "SSL" }
+          ]
+        }
+      },
+      {
+        "id": "domain-search",
+        "component": "DomainSearchBlock",
+        "props": {
+          "showTitle": true,
+          "title": "Find Your Perfect Domain",
+          "subtitle": "Search for available domains and start your online journey today."
+        }
+      },
+      {
+        "id": "trust-indicators",
+        "component": "TrustIndicatorsBlock",
+        "props": {
+          "className": "py-8"
+        }
+      },
+      {
+        "id": "pricing",
+        "component": "PricingSection",
+        "props": {
+          "title": "Hosting Plans for Every Need",
+          "description": "From personal blogs to enterprise websites, we have the perfect hosting solution for you."
+        }
+      },
+      {
+        "id": "services",
+        "component": "ServicesSection"
+      },
+      {
+        "id": "features",
+        "component": "FeatureGridBlock",
+        "props": {
+          "features": [
+            {
+              "icon": "⚡",
+              "title": "Lightning Fast Performance",
+              "description": "SSD storage and optimized servers ensure your website loads in milliseconds, not seconds."
+            },
+            {
+              "icon": "🔒",
+              "title": "Advanced Security",
+              "description": "Free SSL certificates, DDoS protection, and daily security scans keep your site secure."
+            },
+            {
+              "icon": "🔄",
+              "title": "Daily Backups",
+              "description": "Automated daily backups ensure your data is always safe and easily recoverable."
+            },
+            {
+              "icon": "📞",
+              "title": "24/7 Expert Support",
+              "description": "Our certified support team is available around the clock to help with any questions."
+            },
+            {
+              "icon": "🎛️",
+              "title": "cPanel Control Panel",
+              "description": "Industry-standard cPanel gives you full control over your hosting environment."
+            },
+            {
+              "icon": "📈",
+              "title": "99.9% Uptime Guarantee",
+              "description": "Your website stays online with our industry-leading uptime guarantee and monitoring."
+            }
+          ],
+          "columns": 3,
+          "showAnimation": true,
+          "className": "py-16 bg-white"
+        }
+      },
+      {
+        "id": "security",
+        "component": "SecurityBadgesBlock",
+        "props": {
+          "title": "Enterprise Security & Compliance",
+          "subtitle": "Your data is protected with industry-leading security measures",
+          "layout": "grid"
+        }
+      },
+      {
+        "id": "server-specs",
+        "component": "ServerSpecsBlock",
+        "props": {
+          "title": "Server Specifications",
+          "subtitle": "Enterprise-grade hardware for maximum performance",
+          "layout": "cards"
+        }
+      },
+      {
+        "id": "testimonials",
+        "component": "TestimonialsSection"
+      },
+      {
+        "id": "contact",
+        "component": "ContactSection"
       }
     ]
   }

@@ -1,0 +1,43 @@
+---
+import ServiceFeatureBlock from "./ServiceFeatureBlock.astro";
+
+interface Props {
+  className?: string;
+  imagePosition?: 'left' | 'right';
+  backgroundColor?: string;
+  customTitle?: string;
+  customDescription?: string;
+  customLink?: {
+    text: string;
+    href: string;
+  };
+}
+
+const {
+  className = "",
+  imagePosition = 'left',
+  backgroundColor = "bg-gray-50",
+  customTitle = "Website Builder",
+  customDescription = "Build stunning websites without code using our intuitive drag-and-drop builder. Pre-designed templates, responsive design, and integrated hosting included.",
+  customLink = {
+    text: "Try Website Builder",
+    href: "/website-builder"
+  }
+} = Astro.props;
+
+// Placeholder image - replace with actual Website Builder image
+const builderImage = {
+  src: "https://via.placeholder.com/600x400/7C3AED/white?text=Website+Builder",
+  alt: "Website Builder"
+};
+---
+
+<ServiceFeatureBlock
+  title={customTitle}
+  description={customDescription}
+  image={builderImage}
+  link={customLink}
+  imagePosition={imagePosition}
+  className={className}
+  backgroundColor={backgroundColor}
+/>

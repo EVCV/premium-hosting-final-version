@@ -1,0 +1,43 @@
+---
+import ServiceFeatureBlock from "./ServiceFeatureBlock.astro";
+
+interface Props {
+  className?: string;
+  imagePosition?: 'left' | 'right';
+  backgroundColor?: string;
+  customTitle?: string;
+  customDescription?: string;
+  customLink?: {
+    text: string;
+    href: string;
+  };
+}
+
+const {
+  className = "",
+  imagePosition = 'left',
+  backgroundColor = "bg-gray-50",
+  customTitle = "VPS Hosting",
+  customDescription = "Get dedicated resources with our Virtual Private Server hosting. Full root access, scalable resources, and enterprise-grade performance for growing businesses.",
+  customLink = {
+    text: "View VPS Plans",
+    href: "/vps-hosting"
+  }
+} = Astro.props;
+
+// Placeholder image - replace with actual VPS hosting image
+const vpsImage = {
+  src: "https://via.placeholder.com/600x400/059669/white?text=VPS+Hosting",
+  alt: "VPS Hosting"
+};
+---
+
+<ServiceFeatureBlock
+  title={customTitle}
+  description={customDescription}
+  image={vpsImage}
+  link={customLink}
+  imagePosition={imagePosition}
+  className={className}
+  backgroundColor={backgroundColor}
+/>

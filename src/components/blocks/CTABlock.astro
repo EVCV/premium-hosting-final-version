@@ -1,0 +1,57 @@
+---
+interface CTAButton {
+  text: string;
+  href: string;
+  style?: 'primary' | 'secondary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+}
+
+interface Props {
+  buttons: CTAButton[];
+  layout?: 'horizontal' | 'vertical' | 'stacked';
+  alignment?: 'left' | 'center' | 'right';
+  className?: string;
+}
+
+const {
+  buttons,
+  layout = 'horizontal',
+  alignment = 'center',
+  className = ""
+} = Astro.props;
+
+const layoutClasses = {
+  horizontal: 'flex flex-col sm:flex-row gap-4',
+  vertical: 'flex flex-col gap-4',
+  stacked: 'flex flex-col gap-2'
+};
+
+const alignmentClasses = {
+  left: 'justify-start items-start',
+  center: 'justify-center items-center', 
+  right: 'justify-end items-end'
+};
+
+const buttonClasses = {
+  primary: 'btn-primary',
+  secondary: 'btn-secondary',
+  outline: 'btn-outline'
+};
+
+const sizeClasses = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-lg'
+};
+---
+
+<div class={`${layoutClasses[layout]} ${alignmentClasses[alignment]} ${className}`}>
+  {buttons.map((button) => (
+    <a 
+      href={button.href} 
+      class={`${buttonClasses[button.style || 'primary']} ${sizeClasses[button.size || 'md']} ripple`}
+    >
+      {button.text}
+    </a>
+  ))}
+</div>

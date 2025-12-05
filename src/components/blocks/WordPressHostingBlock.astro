@@ -1,0 +1,43 @@
+---
+import ServiceFeatureBlock from "./ServiceFeatureBlock.astro";
+
+interface Props {
+  className?: string;
+  imagePosition?: 'left' | 'right';
+  backgroundColor?: string;
+  customTitle?: string;
+  customDescription?: string;
+  customLink?: {
+    text: string;
+    href: string;
+  };
+}
+
+const {
+  className = "",
+  imagePosition = 'left',
+  backgroundColor = "bg-white",
+  customTitle = "WordPress Hosting",
+  customDescription = "Optimized WordPress hosting with lightning-fast performance, automatic updates, and one-click staging. Perfect for blogs, business sites, and e-commerce stores.",
+  customLink = {
+    text: "Explore WordPress Plans",
+    href: "/wordpress-hosting"
+  }
+} = Astro.props;
+
+// Placeholder image - replace with actual WordPress hosting image
+const wpImage = {
+  src: "https://via.placeholder.com/600x400/4F46E5/white?text=WordPress+Hosting",
+  alt: "WordPress Hosting"
+};
+---
+
+<ServiceFeatureBlock
+  title={customTitle}
+  description={customDescription}
+  image={wpImage}
+  link={customLink}
+  imagePosition={imagePosition}
+  className={className}
+  backgroundColor={backgroundColor}
+/>

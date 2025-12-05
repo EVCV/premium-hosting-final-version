@@ -1,0 +1,52 @@
+{
+  "hostingServices": [
+    {
+      "index": 1,
+      "titleTop": "WordPress",
+      "titleBottom": "Hosting",
+      "img": "/images/services/wordpress-hosting.jpg",
+      "alt": "WordPress Hosting",
+      "link": "/wordpress-hosting"
+    },
+    {
+      "index": 2,
+      "titleTop": "VPS",
+      "titleBottom": "Servers",
+      "img": "/images/services/vps-hosting.jpg",
+      "alt": "VPS Hosting",
+      "link": "/vps-hosting"
+    },
+    {
+      "index": 3,
+      "titleTop": "Cloud",
+      "titleBottom": "Hosting",
+      "img": "/images/services/cloud-hosting.jpg",
+      "alt": "Cloud Hosting",
+      "link": "/cloud-hosting"
+    },
+    {
+      "index": 1,
+      "titleTop": "Dedicated",
+      "titleBottom": "Servers",
+      "img": "/images/services/dedicated-hosting.jpg",
+      "alt": "Dedicated Servers",
+      "link": "/dedicated-hosting"
+    },
+    {
+      "index": 2,
+      "titleTop": "Website",
+      "titleBottom": "Builder",
+      "img": "/images/services/website-builder.jpg",
+      "alt": "Website Builder",
+      "link": "/website-builder"
+    },
+    {
+      "index": 3,
+      "titleTop": "Domain",
+      "titleBottom": "Registration",
+      "img": "/images/services/domain-registration.jpg",
+      "alt": "Domain Registration",
+      "link": "/domains"
+    }
+  ]
+}

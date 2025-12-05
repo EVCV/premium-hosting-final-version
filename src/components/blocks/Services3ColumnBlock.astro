@@ -1,0 +1,37 @@
+---
+import ServiceCard from "../ui/ServiceCard.astro";
+
+interface Service {
+  index: number;
+  titleTop: string;
+  titleBottom: string;
+  img: any;
+  alt: string;
+  link: string;
+}
+
+interface Props {
+  services: Service[];
+  className?: string;
+}
+
+const {
+  services,
+  className = ""
+} = Astro.props;
+---
+
+<div class={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 ${className}`}>
+  {
+    services.map((service) => (
+      <ServiceCard
+        index={service.index}
+        titleTop={service.titleTop}
+        titleBottom={service.titleBottom}
+        img={service.img}
+        alt={service.alt}
+        link={service.link}
+      />
+    ))
+  }
+</div>

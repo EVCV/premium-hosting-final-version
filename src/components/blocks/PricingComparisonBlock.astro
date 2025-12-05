@@ -1,0 +1,596 @@
+---
+interface PricingPeriod {
+  period: string;
+  price: string;
+  originalPrice?: string;
+  savings?: string;
+}
+
+interface Plan {
+  name: string;
+  description: string;
+  features: string[];
+  pricing: PricingPeriod[];
+  highlighted?: boolean;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+interface Feature {
+  name: string;
+  basic: boolean | string;
+  pro: boolean | string;
+  enterprise: boolean | string;
+}
+
+interface Props {
+  plans?: Plan[];
+  features?: Feature[];
+  title?: string;
+  subtitle?: string;
+  showComparison?: boolean;
+  showGlobalSwitcher?: boolean;
+  className?: string;
+}
+
+const {
+  plans = [
+    {
+      name: "Starter",
+      description: "Perfect for personal websites and blogs",
+      features: ["1 Website", "10 GB SSD Storage", "Unmetered Bandwidth", "Free SSL Certificate", "24/7 Email Support", "cPanel Control Panel"],
+      pricing: [
+        { period: "Monthly", price: "2.99" },
+        { period: "Yearly", price: "2.39", savings: "Save 20%" },
+        { period: "2 Years", price: "2.09", savings: "Save 30%" }
+      ],
+      ctaText: "Get Started",
+      ctaLink: "#"
+    },
+    {
+      name: "Professional",
+      description: "Ideal for growing businesses",
+      highlighted: true,
+      features: ["Unlimited Websites", "50 GB SSD Storage", "Unmetered Bandwidth", "Free SSL Certificate", "24/7 Priority Support", "Daily Backups", "Advanced Security"],
+      pricing: [
+        { period: "Monthly", price: "4.99" },
+        { period: "Yearly", price: "3.99", savings: "Save 20%" },
+        { period: "2 Years", price: "3.49", savings: "Save 30%" }
+      ],
+      ctaText: "Most Popular",
+      ctaLink: "#"
+    },
+    {
+      name: "Business",
+      description: "For high-traffic websites",
+      features: ["Unlimited Websites", "100 GB SSD Storage", "Unmetered Bandwidth", "Free Wildcard SSL", "Phone & Chat Support", "Advanced Backups", "Performance Optimization", "Free CDN"],
+      pricing: [
+        { period: "Monthly", price: "7.99" },
+        { period: "Yearly", price: "6.39", savings: "Save 20%" },
+        { period: "2 Years", price: "5.59", savings: "Save 30%" }
+      ],
+      ctaText: "Upgrade Now",
+      ctaLink: "#"
+    }
+  ],
+  features = [
+    { name: "SSD Storage", basic: "10 GB", pro: "50 GB", enterprise: "100 GB" },
+    { name: "Websites", basic: "1", pro: "Unlimited", enterprise: "Unlimited" },
+    { name: "Bandwidth", basic: true, pro: true, enterprise: true },
+    { name: "SSL Certificate", basic: true, pro: true, enterprise: true },
+    { name: "Free Domain", basic: false, pro: false, enterprise: false },
+    { name: "Daily Backups", basic: false, pro: true, enterprise: true },
+    { name: "Priority Support", basic: false, pro: true, enterprise: true },
+    { name: "Phone Support", basic: false, pro: false, enterprise: true },
+    { name: "Performance Optimization", basic: false, pro: false, enterprise: true }
+  ],
+  title = "Choose Your Perfect Plan",
+  subtitle = "All plans include 99.9% uptime guarantee",
+  showComparison = true,
+  showGlobalSwitcher = true,
+  className = ""
+} = Astro.props;
+
+// Generate unique ID for pricing cards
+const sectionId = `pricing-${Math.random().toString(36).substring(2, 11)}`;
+---
+
+<section class={`py-16 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden ${className}`}>
+  <!-- Background decoration -->
+  <div class="absolute inset-0">
+    <div class="absolute top-20 left-10 w-40 h-40 bg-gold/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-32 right-10 w-56 h-56 bg-dark/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center px-4 py-2 bg-gold/10 border border-gold/20 rounded-full mb-6">
+        <span class="text-dark font-medium text-sm">💰 No Setup Fees • 30-Day Money Back Guarantee</span>
+      </div>
+      
+      <h2 class="text-4xl lg:text-5xl font-bold text-dark mb-6">
+        {title}
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        {subtitle}
+      </p>
+    </div>
+
+    {showGlobalSwitcher && plans.some(p => p.pricing.length > 1) && (
+      <!-- Global Period Switcher -->
+      <div class="flex justify-center mb-12">
+        <div class="global-period-switcher bg-white rounded-2xl p-2 shadow-lg border border-gray-200" data-section-id={sectionId}>
+          <button class="period-global-btn active" data-period="monthly">
+            Monthly
+          </button>
+          <button class="period-global-btn" data-period="yearly">
+            <span>Yearly</span>
+            <span class="savings-tag">Save 20%</span>
+          </button>
+          <button class="period-global-btn" data-period="biannual">
+            <span>2 Years</span>
+            <span class="savings-tag">Save 30%</span>
+          </button>
+        </div>
+      </div>
+    )}
+
+    <!-- Pricing Cards -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
+      {plans.map((plan, index) => {
+        const cardId = `card-${sectionId}-${index}`;
+        return (
+          <div 
+            class={`pricing-card ${plan.highlighted ? 'popular' : ''}`}
+            style={`animation-delay: ${index * 0.1}s`}
+          >
+            {plan.highlighted && (
+              <div class="popular-badge">
+                <span class="goldhead">Most Popular</span>
+              </div>
+            )}
+            
+            <div class="card-content">
+              <div class="card-header">
+                <h3 class="text-2xl font-medium mb-3">{plan.name}</h3>
+                <p class="text-gray-600 mb-6">{plan.description}</p>
+              </div>
+
+              <div class="pricing-section">
+                <div class="period-switcher" data-card-id={cardId}>
+                  {plan.pricing.map((period, periodIndex) => (
+                    <button 
+                      class={`period-btn ${periodIndex === 0 ? 'active' : ''}`}
+                      data-period={period.period}
+                      data-price={period.price}
+                      data-original-price={period.originalPrice || ''}
+                      data-savings={period.savings || ''}
+                    >
+                      {period.period}
+                    </button>
+                  ))}
+                </div>
+
+                <div class="price-display">
+                  <div class="price-main">
+                    <span class="currency">$</span>
+                    <span class="amount" data-card-id={cardId}>{plan.pricing[0].price}</span>
+                    <span class="period-text">/mo</span>
+                  </div>
+                  {plan.pricing[0].originalPrice && (
+                    <div class="price-original">
+                      <span class="line-through text-gray-400">${plan.pricing[0].originalPrice}/mo</span>
+                      {plan.pricing[0].savings && (
+                        <span class="savings-badge ml-2">{plan.pricing[0].savings} OFF</span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div class="features-section">
+                <ul class="features-list">
+                  {plan.features.map(feature => (
+                    <li class="feature-item">
+                      <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                      </svg>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="cta-section">
+                <a href={plan.ctaLink} class={`cta-button ${plan.highlighted ? 'btn-primary' : 'btn-secondary'}`}>
+                  {plan.ctaText}
+                </a>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Feature Comparison Table -->
+    {showComparison && (
+      <div class="overflow-x-auto mb-12">
+        <table class="w-full luxury-card">
+          <thead>
+            <tr class="border-b border-gray-200">
+              <th class="text-left py-4 px-6 font-semibold text-dark">Features</th>
+              {plans.map((plan) => (
+                <th class="text-center py-4 px-6 font-semibold text-dark">{plan.name}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {features.map((feature, index) => (
+              <tr class={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                <td class="py-4 px-6 font-medium text-gray-900">{feature.name}</td>
+                <td class="text-center py-4 px-6">
+                  {typeof feature.basic === 'boolean' ? (
+                    feature.basic ? <span class="text-green-500">✓</span> : <span class="text-gray-400">✗</span>
+                  ) : (
+                    <span class="text-gray-700">{feature.basic}</span>
+                  )}
+                </td>
+                <td class="text-center py-4 px-6">
+                  {typeof feature.pro === 'boolean' ? (
+                    feature.pro ? <span class="text-green-500">✓</span> : <span class="text-gray-400">✗</span>
+                  ) : (
+                    <span class="text-gray-700">{feature.pro}</span>
+                  )}
+                </td>
+                <td class="text-center py-4 px-6">
+                  {typeof feature.enterprise === 'boolean' ? (
+                    feature.enterprise ? <span class="text-green-500">✓</span> : <span class="text-gray-400">✗</span>
+                  ) : (
+                    <span class="text-gray-700">{feature.enterprise}</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )}
+
+    <!-- Bottom CTA -->
+    <div class="text-center">
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 max-w-2xl mx-auto luxury-card">
+        <h3 class="text-2xl font-bold text-dark mb-4">Need a Custom Solution?</h3>
+        <p class="text-gray-600 mb-6">
+          Get in touch with our hosting experts for enterprise-grade solutions tailored to your specific requirements.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="btn-primary">
+            Contact Sales
+          </a>
+          <a href="/enterprise" class="btn-secondary">
+            Enterprise Solutions
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-card {
+    background: white;
+    border-radius: 20px;
+    border: 2px solid #f3f3f3;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    border-color: var(--gold);
+  }
+
+  .pricing-card.popular {
+    border-color: var(--gold);
+    border-width: 3px;
+    transform: scale(1.05);
+  }
+
+  .pricing-card.popular:hover {
+    transform: scale(1.05) translateY(-8px);
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  .card-content {
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-header {
+    text-align: center;
+  }
+
+  .pricing-section {
+    margin-bottom: 2rem;
+  }
+
+  .period-switcher {
+    display: flex;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 1.5rem;
+    gap: 2px;
+  }
+
+  .period-btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #6b7280;
+  }
+
+  .period-btn.active {
+    background: var(--gold);
+    color: black;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+  }
+
+  .period-btn:hover:not(.active) {
+    background: rgba(212, 175, 55, 0.1);
+    color: #374151;
+  }
+
+  .price-display {
+    text-align: center;
+  }
+
+  .price-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .currency {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-right: 0.25rem;
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  .amount {
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .period-text {
+    font-size: 1.125rem;
+    color: #6b7280;
+    margin-left: 0.25rem;
+    align-self: flex-end;
+    margin-bottom: 0.5rem;
+  }
+
+  .price-original {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .savings-badge {
+    background: #dc2626;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .features-section {
+    flex: 1;
+    margin-bottom: 2rem;
+  }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .feature-item:last-child {
+    border-bottom: none;
+  }
+
+  .feature-check {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--gold);
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .cta-section {
+    margin-top: auto;
+  }
+
+  .cta-button {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: block;
+  }
+
+  .global-period-switcher {
+    display: flex;
+    gap: 4px;
+  }
+
+  .period-global-btn {
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #6b7280;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .period-global-btn.active {
+    background: var(--gold);
+    color: black;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  }
+
+  .period-global-btn:hover:not(.active) {
+    background: rgba(212, 175, 55, 0.1);
+    color: #374151;
+  }
+
+  .savings-tag {
+    font-size: 0.75rem;
+    background: #dc2626;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 2px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sectionId = document.querySelector('.global-period-switcher')?.dataset.sectionId;
+    
+    // Handle individual card period switching
+    const periodSwitchers = document.querySelectorAll('.period-switcher');
+    periodSwitchers.forEach(switcher => {
+      const cardId = (switcher as HTMLElement).dataset.cardId;
+      const periodBtns = switcher.querySelectorAll('.period-btn');
+      const priceAmount = document.querySelector(`[data-card-id="${cardId}"].amount`);
+      const priceOriginal = switcher.closest('.pricing-card')?.querySelector('.price-original') as HTMLElement;
+
+      periodBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          periodBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const newPrice = (btn as HTMLElement).dataset.price;
+          const originalPrice = (btn as HTMLElement).dataset.originalPrice;
+          const savings = (btn as HTMLElement).dataset.savings;
+
+          if (priceAmount && newPrice) {
+            priceAmount.textContent = newPrice;
+          }
+
+          if (priceOriginal) {
+            if (originalPrice && savings) {
+              priceOriginal.innerHTML = `
+                <span class="line-through text-gray-400">$${originalPrice}/mo</span>
+                <span class="savings-badge ml-2">${savings} OFF</span>
+              `;
+              priceOriginal.style.display = 'flex';
+            } else {
+              priceOriginal.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+
+    // Handle global period switching
+    const globalSwitcher = document.querySelector('.global-period-switcher');
+    if (!globalSwitcher) return;
+
+    const globalBtns = globalSwitcher.querySelectorAll('.period-global-btn');
+    const allPricingCards = document.querySelectorAll('.pricing-card');
+
+    globalBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selectedPeriod = (btn as HTMLElement).dataset.period;
+        
+        globalBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        allPricingCards.forEach(card => {
+          const periodSwitcher = card.querySelector('.period-switcher');
+          if (periodSwitcher) {
+            const cardBtns = periodSwitcher.querySelectorAll('.period-btn');
+            
+            cardBtns.forEach(cardBtn => {
+              const btnText = cardBtn.textContent?.toLowerCase().trim();
+              let matches = false;
+
+              switch(selectedPeriod) {
+                case 'monthly':
+                  matches = btnText === 'monthly';
+                  break;
+                case 'yearly':
+                  matches = btnText === 'yearly';
+                  break;
+                case 'biannual':
+                  matches = btnText === '2 years';
+                  break;
+              }
+
+              if (matches) {
+                (cardBtn as HTMLButtonElement).click();
+              }
+            });
+          }
+        });
+      });
+    });
+  });
+</script>

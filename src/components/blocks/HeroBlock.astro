@@ -1,0 +1,121 @@
+---
+import DomainSearch from "../ui/DomainSearch.astro";
+import StatsBlock from "./StatsBlock.astro";
+import TrustIndicatorsBlock from "./TrustIndicatorsBlock.astro";
+import BackgroundElementsBlock from "./BackgroundElementsBlock.astro";
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  showBadge?: boolean;
+  badgeText?: string;
+  primaryCTA?: {
+    text: string;
+    href: string;
+  };
+  secondaryCTA?: {
+    text: string;
+    href: string;
+  };
+  showStats?: boolean;
+  showDomainSearch?: boolean;
+  showTrustIndicators?: boolean;
+  showScrollIndicator?: boolean;
+  backgroundPreset?: 'floating' | 'subtle' | 'geometric' | 'minimal';
+  highlightWordIndex?: number;
+}
+
+const {
+  title = "Premium Web Hosting Solutions",
+  subtitle = "Fast, Secure, Reliable",
+  description = "Host your website with confidence. 99.9% uptime guarantee, SSD storage, and 24/7 expert support.",
+  showBadge = true,
+  badgeText = "99.9% Uptime Guaranteed",
+  primaryCTA = { text: "View Hosting Plans", href: "#pricing" },
+  secondaryCTA = { text: "Talk to Expert", href: "/contact" },
+  showStats = true,
+  showDomainSearch = true,
+  showTrustIndicators = true,
+  showScrollIndicator = true,
+  backgroundPreset = 'floating',
+  highlightWordIndex = 1
+} = Astro.props;
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-100">
+  <!-- Background Elements -->
+  <BackgroundElementsBlock preset={backgroundPreset} />
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="max-w-4xl mx-auto">
+      <!-- Badge -->
+      {showBadge && (
+        <div class="inline-flex items-center px-4 py-2 bg-gold/10 border border-gold/20 rounded-full mb-8 glow-on-hover">
+          <span class="w-2 h-2 bg-green-500 rounded-full mr-3 animate-pulse"></span>
+          <span class="text-dark font-medium text-sm">{badgeText}</span>
+        </div>
+      )}
+
+      <!-- Main Headline -->
+      <h1 class="text-5xl lg:text-7xl font-bold text-dark mb-6 leading-tight">
+        {subtitle.split(' ').map((word, index) => (
+          <span class={index === highlightWordIndex ? 'text-gold' : ''}>{word} </span>
+        ))}
+        <br />
+        <span class="text-4xl lg:text-6xl">{title.split(' ').slice(-2).join(' ')}</span>
+      </h1>
+
+      <!-- Description -->
+      <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+        {description}
+      </p>
+
+      <!-- Stats -->
+      {showStats && (
+        <div class="mb-12">
+          <StatsBlock className="" />
+        </div>
+      )}
+
+      <!-- Domain Search -->
+      {showDomainSearch && (
+        <div class="mb-12">
+          <DomainSearch 
+            title=""
+            placeholder="Find your perfect domain..."
+            className="max-w-4xl mx-auto"
+          />
+        </div>
+      )}
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+        <a href={primaryCTA.href} class="btn-primary text-lg px-8 py-4 ripple">
+          {primaryCTA.text}
+        </a>
+        <a href={secondaryCTA.href} class="btn-secondary text-lg px-8 py-4">
+          {secondaryCTA.text}
+        </a>
+      </div>
+
+      <!-- Trust Indicators -->
+      {showTrustIndicators && (
+        <div class="mt-16">
+          <TrustIndicatorsBlock />
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  {showScrollIndicator && (
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div class="w-6 h-10 border-2 border-gold rounded-full flex justify-center">
+        <div class="w-1 h-3 bg-gold rounded-full mt-2 animate-pulse"></div>
+      </div>
+    </div>
+  )}
+</section>
+
+<!-- Floating animations are now handled by BackgroundElementsBlock -->

@@ -1,0 +1,134 @@
+---
+interface Spec {
+  label: string;
+  value: string;
+  icon?: string;
+}
+
+interface ServerPlan {
+  name: string;
+  type: string;
+  specs: Spec[];
+  highlighted?: boolean;
+}
+
+interface Props {
+  plans?: ServerPlan[];
+  title?: string;
+  subtitle?: string;
+  layout?: 'cards' | 'table';
+  className?: string;
+}
+
+const {
+  plans = [
+    {
+      name: "Shared Hosting",
+      type: "shared",
+      specs: [
+        { label: "CPU", value: "Shared vCPU", icon: "🖥️" },
+        { label: "RAM", value: "Shared Memory", icon: "💾" },
+        { label: "Storage", value: "SSD NVMe", icon: "💽" },
+        { label: "Bandwidth", value: "Unmetered", icon: "📊" },
+        { label: "Uptime", value: "99.9%", icon: "⚡" }
+      ]
+    },
+    {
+      name: "VPS Hosting", 
+      type: "vps",
+      highlighted: true,
+      specs: [
+        { label: "CPU", value: "2-8 vCPU Cores", icon: "🖥️" },
+        { label: "RAM", value: "2-16 GB DDR4", icon: "💾" },
+        { label: "Storage", value: "50-200 GB SSD", icon: "💽" },
+        { label: "Bandwidth", value: "Unmetered", icon: "📊" },
+        { label: "Uptime", value: "99.9%", icon: "⚡" }
+      ]
+    },
+    {
+      name: "Dedicated Server",
+      type: "dedicated", 
+      specs: [
+        { label: "CPU", value: "Intel Xeon E5", icon: "🖥️" },
+        { label: "RAM", value: "32-128 GB DDR4", icon: "💾" },
+        { label: "Storage", value: "1-4 TB SSD", icon: "💽" },
+        { label: "Bandwidth", value: "Unmetered", icon: "📊" },
+        { label: "Uptime", value: "99.99%", icon: "⚡" }
+      ]
+    }
+  ],
+  title = "Server Specifications",
+  subtitle = "Enterprise-grade hardware for maximum performance",
+  layout = 'cards',
+  className = ""
+} = Astro.props;
+---
+
+<section class={`py-16 bg-gray-50 ${className}`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-dark mb-4">{title}</h2>
+      <p class="text-lg text-gray-600">{subtitle}</p>
+    </div>
+
+    {layout === 'cards' ? (
+      <!-- Cards Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {plans.map((plan) => (
+          <div class={`luxury-card p-8 ${plan.highlighted ? 'ring-2 ring-gold' : ''}`}>
+            <div class="text-center mb-6">
+              <h3 class="text-xl font-semibold text-dark mb-2">{plan.name}</h3>
+              <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mx-auto">
+                <span class="text-2xl">{plan.type === 'shared' ? '🌐' : plan.type === 'vps' ? '☁️' : '🏢'}</span>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              {plan.specs.map((spec) => (
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                    {spec.icon && <span class="mr-3">{spec.icon}</span>}
+                    <span class="text-gray-700">{spec.label}</span>
+                  </div>
+                  <span class="font-medium text-dark">{spec.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <!-- Table Layout -->
+      <div class="luxury-card overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-gray-200">
+              <th class="text-left py-4 px-6 font-semibold text-dark">Specification</th>
+              {plans.map((plan) => (
+                <th class="text-center py-4 px-6 font-semibold text-dark">{plan.name}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {plans[0].specs.map((_, specIndex) => (
+              <tr class={specIndex % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                <td class="py-4 px-6 font-medium text-gray-900 flex items-center">
+                  {plans[0].specs[specIndex].icon && (
+                    <span class="mr-3">{plans[0].specs[specIndex].icon}</span>
+                  )}
+                  {plans[0].specs[specIndex].label}
+                </td>
+                {plans.map((plan) => (
+                  <td class="text-center py-4 px-6 font-medium text-dark">
+                    {plan.specs[specIndex].value}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )}
+  </div>
+</section>
