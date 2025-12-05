@@ -1,0 +1,47 @@
+---
+import SectionTitle from "../ui/SectionTitle.astro";
+import ServiceCard from "../ui/ServiceCard.astro";
+
+import servicesData from "../../data/services.json";
+
+interface Props {
+  services?: Array<{
+    index: number;
+    titleTop: string;
+    titleBottom: string;
+    img: any;
+    alt: string;
+    link: string;
+  }>;
+  title?: string;
+  description?: string;
+  className?: string;
+}
+
+const {
+  services = servicesData.hostingServices,
+  title = "Our Hosting Services",
+  description = "Comprehensive hosting solutions designed to power your online presence with reliability, speed, and expert support.",
+  className = ""
+} = Astro.props;
+---
+
+<section class={`section ${className}`}>
+  <div class="mt-[140px] mb-5">
+    <SectionTitle sectionTitle={title} description={description} />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      {
+        services.map((service) => (
+          <ServiceCard
+            index={service.index}
+            titleTop={service.titleTop}
+            titleBottom={service.titleBottom}
+            img={service.img}
+            alt={service.alt}
+            link={service.link}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+import Form from "../ui/Form.astro";
+import SectionTitle from "../ui/SectionTitle.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  className?: string;
+}
+
+const {
+  title = "Contact Us",
+  description = "Connect with Us: Let's Discuss Your Digital Marketing Needs",
+  className = ""
+} = Astro.props;
+---
+
+<section id="contact" class={`section ${className}`}>
+  <div class="mb-[140px] relative">
+    <SectionTitle
+      sectionTitle={title}
+      description={description}
+    />
+    <Form />
+  </div>
+</section>

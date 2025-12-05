@@ -1,0 +1,26 @@
+---
+import Accordion from "../ui/Accordion.astro";
+import SectionTitle from "../ui/SectionTitle.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  className?: string;
+}
+
+const {
+  title = "Frequency Asked Questions",
+  description = "Find answers to the most common questions about our web hosting and server solutions. Our FAQ section provides detailed information to help you make informed decisions about our services.",
+  className = ""
+} = Astro.props;
+---
+
+<section id="services" class={`section ${className}`}>
+  <div class="mt-[140px]">
+    <SectionTitle
+      sectionTitle={title}
+      description={description}
+    />
+    <Accordion />
+  </div>
+</section>

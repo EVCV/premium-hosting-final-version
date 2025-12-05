@@ -1,14 +1,12 @@
 ---
-// Section Components
-import Hero from '../components/sections/Hero.astro';
-import Sponsors from '../components/sections/Sponsors.astro';
-import Services from '../components/sections/Services.astro';
-import Team from '../components/sections/Team.astro';
-import Testimonials from '../components/sections/Testimonials.astro';
-import Cases from '../components/sections/Cases.astro';
-import Contact from '../components/sections/Contact.astro';
+// Template Components
 import PricingSection from '../templates/sections/PricingSection.astro';
 import PostContent from '../templates/sections/PostContent.astro';
+
+// Legacy Sections (still needed for some pages)
+import Hero from '../components/sections/Hero.astro';
+import Features from '../components/sections/Features.astro';
+import HostingHero from '../components/sections/HostingHero.astro';
 
 // Block Components
 import HeroBlock from '../components/blocks/HeroBlock.astro';
@@ -32,6 +30,16 @@ import CloudHostingBlock from '../components/blocks/CloudHostingBlock.astro';
 import PageBuilderBlock from '../components/blocks/PageBuilderBlock.astro';
 import DedicatedHostingBlock from '../components/blocks/DedicatedHostingBlock.astro';
 
+// New Converted Blocks
+import ContactFormBlock from '../components/blocks/ContactFormBlock.astro';
+import ServiceGridBlock from '../components/blocks/ServiceGridBlock.astro';
+import TeamGridBlock from '../components/blocks/TeamGridBlock.astro';
+import TestimonialsBlock from '../components/blocks/TestimonialsBlock.astro';
+import LogoGridBlock from '../components/blocks/LogoGridBlock.astro';
+import CaseStudiesBlock from '../components/blocks/CaseStudiesBlock.astro';
+import ProposalFormBlock from '../components/blocks/ProposalFormBlock.astro';
+import FAQBlock from '../components/blocks/FAQBlock.astro';
+
 interface SectionConfig {
   id: string;
   component: string;
@@ -52,16 +60,14 @@ const { template, data } = Astro.props;
 
 // Component registry for direct access (matches template.json naming)
 const components = {
-  // Section Components
-  HeroSection: Hero,
-  SponsorsSection: Sponsors,
-  ServicesSection: Services,
-  TeamSection: Team,
-  TestimonialsSection: Testimonials,
-  CasesSection: Cases,
-  ContactSection: Contact,
+  // Template Components
   PricingSection,
   PostContent,
+  
+  // Legacy Section Components (temporary)
+  HeroSection: Hero,
+  FeaturesSection: Features,
+  HostingHeroSection: HostingHero,
   
   // Block Components
   HeroBlock,
@@ -83,7 +89,25 @@ const components = {
   VPSHostingBlock,
   CloudHostingBlock,
   PageBuilderBlock,
-  DedicatedHostingBlock
+  DedicatedHostingBlock,
+  
+  // New Converted Blocks
+  ContactFormBlock,
+  ServiceGridBlock,
+  TeamGridBlock,
+  TestimonialsBlock,
+  LogoGridBlock,
+  CaseStudiesBlock,
+  ProposalFormBlock,
+  FAQBlock,
+  
+  // Section aliases pointing to new blocks
+  ContactSection: ContactFormBlock,
+  ServicesSection: ServiceGridBlock,
+  TeamSection: TeamGridBlock,
+  TestimonialsSection: TestimonialsBlock,
+  SponsorsSection: LogoGridBlock,
+  CasesSection: CaseStudiesBlock
 };
 ---2
 
