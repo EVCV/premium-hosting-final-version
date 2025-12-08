@@ -15,12 +15,22 @@ const {
 } = Astro.props;
 ---
 
-<section id="contact" class={`section ${className}`}>
-  <div class="mb-[140px] relative">
-    <SectionTitle
-      sectionTitle={title}
-      description={description}
-    />
-    <Form />
+<section id="contact" class={`py-16 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden ${className}`}>
+  <!-- Background decoration -->
+  <div class="absolute inset-0">
+    <div class="absolute top-20 left-10 w-40 h-40 bg-gold/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-32 right-10 w-56 h-56 bg-gold/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <SectionTitle
+        sectionTitle={title}
+        description={description}
+      />
+    </div>
+    <div class="flex justify-center">
+      <Form />
+    </div>
   </div>
 </section>
