@@ -97,8 +97,8 @@
 
   @layer components {
     .btn-primary {
-      @apply bg-dark text-white rounded-lg px-[35px] py-5 transition-all duration-300 relative overflow-hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      @apply bg-dark text-white rounded-lg px-[35px] py-5 border-2 border-gold transition-all duration-300 relative overflow-hidden;
+      box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
     }
     .btn-primary::before {
       content: '';
@@ -107,7 +107,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 1), transparent);
       transition: left 0.5s;
     }
     .btn-primary:hover::before {
@@ -115,11 +115,11 @@
     }
     .btn-primary:hover {
       @apply bg-gold text-black transform scale-105;
-      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+      box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
     }
 
     .btn-secondary {
-      @apply bg-transparent text-black px-[35px] py-5 rounded-lg border-2 border-solid border-black transition-all duration-300 relative overflow-hidden;
+      @apply bg-transparent text-black px-[35px] py-5 rounded-lg border-2 border-solid border-gold transition-all duration-300 relative overflow-hidden;
     }
     .btn-secondary::before {
       content: '';
@@ -137,16 +137,16 @@
     }
     .btn-secondary:hover {
       @apply text-white border-gold transform scale-105;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
     }
 
     .btn-tertiary {
-      @apply bg-gold text-black rounded-lg px-[35px] py-5 transition-all duration-300 relative;
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+      @apply bg-gold text-black rounded-lg px-[35px] py-5 border-2 border-dark transition-all duration-300 relative;
+      box-shadow: 4px 4px 0px rgba(212, 175, 55, 1);
     }
     .btn-tertiary:hover {
       @apply bg-white text-black transform scale-105;
-      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+      box-shadow: 8px 8px 0px rgba(212, 175, 55, 1);
     }
 
     .goldhead {
@@ -154,7 +154,7 @@
     }
     .goldhead:hover {
       @apply transform scale-105;
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+      box-shadow: 4px 4px 0px rgba(212, 175, 55, 1);
     }
 
     .whitehead {
@@ -162,7 +162,7 @@
     }
     .whitehead:hover {
       @apply transform scale-105;
-      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
+      box-shadow: 4px 4px 0px rgba(255, 255, 255, 1);
     }
 
     .blackhead {
@@ -170,13 +170,13 @@
     }
     .blackhead:hover {
       @apply transform scale-105;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
     }
 
     /* Luxury Card Styles */
     .luxury-card {
-      @apply bg-white rounded-2xl border border-gray-200 transition-all duration-300 relative overflow-hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      @apply bg-white rounded-2xl border border-gray-900 transition-all duration-300 relative overflow-hidden;
+      box-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
     }
     .luxury-card::before {
       content: '';
@@ -194,7 +194,7 @@
     }
     .luxury-card:hover {
       @apply transform -translate-y-2 border-gold;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      box-shadow: 12px 12px 0px rgba(0, 0, 0, 1);
     }
 
     /* Interactive Elements */
@@ -266,7 +266,7 @@
       width: 0;
       height: 0;
       border-radius: 50%;
-      background: rgba(212, 175, 55, 0.5);
+      background: rgba(212, 175, 55, 1);
       transform: translate(-50%, -50%);
       transition: width 0.6s, height 0.6s;
     }
