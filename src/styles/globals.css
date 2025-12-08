@@ -98,7 +98,6 @@
   @layer components {
     .btn-primary {
       @apply bg-dark text-white rounded-lg px-[35px] py-5 border-2 border-gold transition-all duration-300 relative overflow-hidden;
-      box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
     }
     .btn-primary::before {
       content: '';
@@ -115,7 +114,6 @@
     }
     .btn-primary:hover {
       @apply bg-gold text-black transform scale-105;
-      box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
     }
 
     .btn-secondary {
@@ -137,16 +135,13 @@
     }
     .btn-secondary:hover {
       @apply text-white border-gold transform scale-105;
-      box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
     }
 
     .btn-tertiary {
       @apply bg-gold text-black rounded-lg px-[35px] py-5 border-2 border-dark transition-all duration-300 relative;
-      box-shadow: 4px 4px 0px rgba(212, 175, 55, 1);
     }
     .btn-tertiary:hover {
       @apply bg-white text-black transform scale-105;
-      box-shadow: 8px 8px 0px rgba(212, 175, 55, 1);
     }
 
     .goldhead {
