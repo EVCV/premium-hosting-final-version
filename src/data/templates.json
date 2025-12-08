@@ -3,7 +3,7 @@
     "layout": "BaseTemplate",
     "sections": [
       {
-        "id": "hero",
+        "id": "home-hero",
         "component": "HeroBlock",
         "props": {
           "title": "Premium Web Hosting Solutions",
@@ -13,115 +13,13 @@
           "badgeText": "99.9% Uptime Guaranteed",
           "showStats": true,
           "showDomainSearch": true,
-          "showTrustIndicators": true,
-          "showScrollIndicator": true,
           "backgroundPreset": "floating",
-          "primaryCTA": {
-            "text": "View Hosting Plans",
-            "href": "#pricing"
-          },
-          "secondaryCTA": {
-            "text": "Talk to Expert",
-            "href": "/contact"
-          }
+          "primaryCTA": { "text": "View Hosting Plans", "href": "#pricing" },
+          "secondaryCTA": { "text": "Talk to Expert", "href": "/contact" }
         }
       },
       {
-        "id": "pricing",
-        "component": "PricingComparisonBlock",
-        "props": {
-          "title": "Hosting Plans for Every Need",
-          "subtitle": "From personal blogs to enterprise websites, we have the perfect hosting solution for you.",
-          "showComparison": true,
-          "showGlobalSwitcher": true
-        }
-      },
-      {
-        "id": "services",
-        "component": "ServicesSection"
-      },
-      {
-        "id": "testimonials",
-        "component": "TestimonialsSection"
-      },
-      {
-        "id": "contact",
-        "component": "ContactSection"
-      }
-    ]
-  },
-  "about": {
-    "layout": "BaseTemplate",
-    "sections": [
-      {
-        "id": "about-hero",
-        "component": "HeroSection"
-      },
-      {
-        "id": "team",
-        "component": "TeamSection"
-      }
-    ]
-  },
-  "blog": {
-    "layout": "BlogLayout",
-    "sections": [
-      {
-        "id": "post-content",
-        "component": "PostContent"
-      },
-      {
-        "id": "related-posts",
-        "component": "RelatedPostsSection"
-      }
-    ]
-  },
-  "product": {
-    "layout": "BaseTemplate",
-    "sections": [
-      {
-        "id": "product-hero",
-        "component": "ProductHeroSection"
-      },
-      {
-        "id": "product-details",
-        "component": "ProductDetailsSection"
-      }
-    ]
-  },
-  "base": {
-    "layout": "BaseTemplate",
-    "sections": [
-      {
-        "id": "default-hero",
-        "component": "HeroSection"
-      }
-    ]
-  },
-  "homepage-granular": {
-    "layout": "BaseTemplate",
-    "sections": [
-      {
-        "id": "hero-block",
-        "component": "HeroBlock",
-        "props": {
-          "title": "Premium Web Hosting Solutions",
-          "subtitle": "Fast, Secure, Reliable",
-          "description": "Host your website with confidence. 99.9% uptime guarantee, SSD storage, and 24/7 expert support.",
-          "showBadge": true,
-          "badgeText": "99.9% Uptime Guaranteed",
-          "primaryCTA": {
-            "text": "View Hosting Plans",
-            "href": "#pricing"
-          },
-          "secondaryCTA": {
-            "text": "Talk to Expert",
-            "href": "/contact"
-          }
-        }
-      },
-      {
-        "id": "stats",
+        "id": "home-stats",
         "component": "StatsBlock",
         "props": {
           "className": "py-16",
@@ -134,99 +32,290 @@
         }
       },
       {
-        "id": "domain-search",
-        "component": "DomainSearchBlock",
-        "props": {
-          "showTitle": true,
-          "title": "Find Your Perfect Domain",
-          "subtitle": "Search for available domains and start your online journey today."
-        }
-      },
-      {
-        "id": "trust-indicators",
-        "component": "TrustIndicatorsBlock",
-        "props": {
-          "className": "py-8"
-        }
-      },
-      {
-        "id": "pricing",
-        "component": "PricingSection",
+        "id": "home-pricing",
+        "component": "PricingComparisonBlock",
         "props": {
           "title": "Hosting Plans for Every Need",
-          "description": "From personal blogs to enterprise websites, we have the perfect hosting solution for you."
+          "subtitle": "From personal blogs to enterprise websites, we have the perfect hosting solution.",
+          "showGlobalSwitcher": true
         }
       },
       {
-        "id": "services",
-        "component": "ServicesSection"
-      },
-      {
-        "id": "features",
+        "id": "home-features",
         "component": "FeatureGridBlock",
         "props": {
-          "features": [
-            {
-              "icon": "⚡",
-              "title": "Lightning Fast Performance",
-              "description": "SSD storage and optimized servers ensure your website loads in milliseconds, not seconds."
-            },
-            {
-              "icon": "🔒",
-              "title": "Advanced Security",
-              "description": "Free SSL certificates, DDoS protection, and daily security scans keep your site secure."
-            },
-            {
-              "icon": "🔄",
-              "title": "Daily Backups",
-              "description": "Automated daily backups ensure your data is always safe and easily recoverable."
-            },
-            {
-              "icon": "📞",
-              "title": "24/7 Expert Support",
-              "description": "Our certified support team is available around the clock to help with any questions."
-            },
-            {
-              "icon": "🎛️",
-              "title": "cPanel Control Panel",
-              "description": "Industry-standard cPanel gives you full control over your hosting environment."
-            },
-            {
-              "icon": "📈",
-              "title": "99.9% Uptime Guarantee",
-              "description": "Your website stays online with our industry-leading uptime guarantee and monitoring."
-            }
-          ],
+          "title": "Why Choose Us?",
           "columns": 3,
-          "showAnimation": true,
-          "className": "py-16 bg-white"
+          "features": [
+            { "icon": "⚡", "title": "Lightning Fast", "description": "SSD storage and optimized servers ensure your website loads in milliseconds." },
+            { "icon": "🔒", "title": "Advanced Security", "description": "Free SSL certificates, DDoS protection, and daily security scans." },
+            { "icon": "🔄", "title": "Daily Backups", "description": "Automated daily backups ensure your data is always safe and recoverable." },
+            { "icon": "📞", "title": "24/7 Support", "description": "Our certified support team is available around the clock." },
+            { "icon": "🎛️", "title": "cPanel Included", "description": "Industry-standard cPanel gives you full control over your hosting." },
+            { "icon": "📈", "title": "Scalable Growth", "description": "Upgrade your resources instantly as your business grows." }
+          ]
         }
       },
       {
-        "id": "security",
-        "component": "SecurityBadgesBlock",
+        "id": "home-testimonials",
+        "component": "TestimonialsBlock",
         "props": {
-          "title": "Enterprise Security & Compliance",
-          "subtitle": "Your data is protected with industry-leading security measures",
-          "layout": "grid"
+          "title": "What Our Clients Say",
+          "description": "Trusted by thousands of businesses worldwide."
         }
       },
       {
-        "id": "server-specs",
+        "id": "home-contact",
+        "component": "ContactFormBlock",
+        "props": {
+          "title": "Still Have Questions?",
+          "description": "Our experts are ready to help you choose the right plan."
+        }
+      }
+    ]
+  },
+  "about": {
+    "layout": "BaseTemplate",
+    "sections": [
+      {
+        "id": "about-hero",
+        "component": "HeroBlock",
+        "props": {
+          "title": "About Premium Hosting",
+          "subtitle": "Trusted Since 2010",
+          "description": "We provide world-class hosting services, helping thousands of businesses establish their online presence with confidence.",
+          "showDomainSearch": false,
+          "showStats": false,
+          "primaryCTA": { "text": "Meet the Team", "href": "#team" },
+          "secondaryCTA": { "text": "Contact Us", "href": "#contact" }
+        }
+      },
+      {
+        "id": "about-features",
+        "component": "FeatureGridBlock",
+        "props": {
+          "columns": 3,
+          "features": [
+            { "icon": "🏆", "title": "Industry Leading", "description": "Over 14 years of experience in web hosting." },
+            { "icon": "🌍", "title": "Global Infrastructure", "description": "Data centers across multiple continents." },
+            { "icon": "💎", "title": "Premium Quality", "description": "Enterprise-grade hardware stack." }
+          ]
+        }
+      },
+      {
+        "id": "about-team",
+        "component": "TeamGridBlock",
+        "props": {
+          "title": "Meet Our Experts",
+          "description": "The dedicated team behind your 24/7 support."
+        }
+      },
+      {
+        "id": "about-logos",
+        "component": "LogoGridBlock",
+        "props": {
+          "className": "py-16"
+        }
+      },
+      {
+        "id": "about-contact",
+        "component": "ContactFormBlock"
+      }
+    ]
+  },
+  "shared-hosting": {
+    "layout": "BaseTemplate",
+    "sections": [
+      {
+        "id": "shared-hero",
+        "component": "HeroBlock",
+        "props": {
+          "title": "Shared Web Hosting",
+          "subtitle": "Fast, Reliable, Affordable",
+          "description": "Perfect for small websites, blogs, and personal projects.",
+          "showDomainSearch": true,
+          "backgroundPreset": "subtle"
+        }
+      },
+      {
+        "id": "shared-pricing",
+        "component": "PricingComparisonBlock",
+        "props": {
+          "title": "Shared Hosting Plans",
+          "subtitle": "Choose the package that fits your needs.",
+          "plans": [
+            {
+              "name": "Starter",
+              "description": "Perfect for personal websites",
+              "features": ["1 Website", "10 GB SSD", "Free SSL", "24/7 Support"],
+              "pricing": [{ "period": "Monthly", "price": "2.99" }, { "period": "Yearly", "price": "2.39" }],
+              "ctaLink": "/cart/starter"
+            },
+            {
+              "name": "Professional",
+              "description": "Ideal for growing businesses",
+              "highlighted": true,
+              "features": ["Unlimited Websites", "50 GB SSD", "Free SSL", "Priority Support"],
+              "pricing": [{ "period": "Monthly", "price": "4.99" }, { "period": "Yearly", "price": "3.99" }],
+              "ctaText": "Most Popular",
+              "ctaLink": "/cart/pro"
+            },
+            {
+              "name": "Business",
+              "description": "For high-traffic sites",
+              "features": ["Unlimited Websites", "100 GB SSD", "Wildcard SSL", "Free CDN"],
+              "pricing": [{ "period": "Monthly", "price": "7.99" }, { "period": "Yearly", "price": "6.39" }],
+              "ctaLink": "/cart/business"
+            }
+          ]
+        }
+      },
+      {
+        "id": "shared-features",
+        "component": "FeatureGridBlock",
+        "props": {
+          "title": "Shared Hosting Features",
+          "features": [
+            { "icon": "⚡", "title": "NVMe Storage", "description": "Up to 10x faster than traditional SSDs." },
+            { "icon": "🖱️", "title": "One-Click Installs", "description": "Install WordPress, Joomla, and more in seconds." },
+            { "icon": "🛡️", "title": "Imunify360", "description": "Proactive defense against malware and attacks." }
+          ]
+        }
+      },
+      {
+        "id": "shared-faq",
+        "component": "FAQBlock",
+        "props": {
+          "title": "Shared Hosting FAQ"
+        }
+      }
+    ]
+  },
+  "vps-hosting": {
+    "layout": "BaseTemplate",
+    "sections": [
+      {
+        "id": "vps-hero",
+        "component": "HeroBlock",
+        "props": {
+          "title": "VPS Hosting",
+          "subtitle": "Powerful & Scalable",
+          "description": "Dedicated resources with full root access for total control.",
+          "showBadge": true,
+          "badgeText": "KVM Virtualization",
+          "backgroundPreset": "geometric"
+        }
+      },
+      {
+        "id": "vps-specs",
         "component": "ServerSpecsBlock",
         "props": {
-          "title": "Server Specifications",
-          "subtitle": "Enterprise-grade hardware for maximum performance",
+          "title": "Compare VPS Resources",
           "layout": "cards"
         }
       },
       {
-        "id": "testimonials",
-        "component": "TestimonialsSection"
+        "id": "vps-pricing",
+        "component": "PricingComparisonBlock",
+        "props": {
+          "title": "VPS Packages",
+          "plans": [
+            {
+              "name": "VPS Basic",
+              "features": ["2 vCPU", "4 GB RAM", "80 GB SSD", "2 TB Bandwidth"],
+              "pricing": [{ "period": "Monthly", "price": "19.99" }]
+            },
+            {
+              "name": "VPS Pro",
+              "highlighted": true,
+              "features": ["4 vCPU", "8 GB RAM", "160 GB SSD", "4 TB Bandwidth"],
+              "pricing": [{ "period": "Monthly", "price": "39.99" }]
+            },
+            {
+              "name": "VPS Elite",
+              "features": ["8 vCPU", "16 GB RAM", "320 GB SSD", "8 TB Bandwidth"],
+              "pricing": [{ "period": "Monthly", "price": "79.99" }]
+            }
+          ]
+        }
       },
       {
-        "id": "contact",
-        "component": "ContactSection"
+        "id": "vps-features",
+        "component": "FeatureGridBlock",
+        "props": {
+          "title": "Technical Specifications",
+          "features": [
+            { "icon": "ROOT", "title": "Full Root Access", "description": "Complete control over your server environment." },
+            { "icon": "🚀", "title": "Instant Provisioning", "description": "Get up and running in minutes, not hours." },
+            { "icon": "🔒", "title": "DDoS Protection", "description": "Enterprise-grade mitigation included." }
+          ]
+        }
+      }
+    ]
+  },
+  "domains": {
+    "layout": "BaseTemplate",
+    "sections": [
+      {
+        "id": "domains-hero",
+        "component": "HeroBlock",
+        "props": {
+          "title": "Find Your Perfect Domain",
+          "subtitle": "Start Your Journey",
+          "description": "Search for available domains and secure your online identity today.",
+          "showDomainSearch": true,
+          "showStats": false
+        }
+      },
+      {
+        "id": "domains-features",
+        "component": "FeatureGridBlock",
+        "props": {
+          "columns": 3,
+          "features": [
+            { "icon": "🔒", "title": "Free Privacy", "description": "We hide your personal details from WHOIS databases for free." },
+            { "icon": "⚙️", "title": "DNS Management", "description": "Easy to use control panel to manage your records." },
+            { "icon": "🔄", "title": "Auto-Renewal", "description": "Never lose your domain with optional auto-renewal." }
+          ]
+        }
+      },
+      {
+        "id": "domains-faq",
+        "component": "FAQBlock"
+      }
+    ]
+  },
+  "contact": {
+    "layout": "BaseTemplate",
+    "sections": [
+      {
+        "id": "contact-header",
+        "component": "SectionHeaderBlock",
+        "props": {
+          "title": "Get In Touch",
+          "description": "Our team is here to help you 24/7.",
+          "className": "pt-20"
+        }
+      },
+      {
+        "id": "contact-form",
+        "component": "ContactFormBlock"
+      },
+      {
+        "id": "contact-faq",
+        "component": "FAQBlock",
+        "props": {
+          "title": "Common Questions"
+        }
+      }
+    ]
+  },
+  "blog": {
+    "layout": "BlogLayout",
+    "sections": [
+      {
+        "id": "post-content",
+        "component": "PostContent"
       }
     ]
   }

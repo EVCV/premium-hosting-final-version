@@ -13,11 +13,16 @@ interface Props {
 }
 
 const {
-  features,
+  features = [], // <--- This default value fixes the crash
   columns = 3,
   showAnimation = true,
   className = ""
 } = Astro.props;
+
+// Safety check: If features is still null/undefined or empty, don't render anything
+if (!features || features.length === 0) {
+  return null;
+}
 
 const columnClasses = {
   1: 'lg:grid-cols-1',

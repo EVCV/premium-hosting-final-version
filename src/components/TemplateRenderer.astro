@@ -1,14 +1,10 @@
 ---
 // Template Components
-import PricingSection from '../templates/sections/PricingSection.astro';
-import PostContent from '../templates/sections/PostContent.astro';
+import PricingSection from '../templates/sections/PricingSection.astro'; // Keep if this is actually a block wrapper
+import PostContent from '../templates/sections/PostContent.astro'; // Keep for blog
 
-// Legacy Sections (still needed for some pages)
-import Hero from '../components/sections/Hero.astro';
-import Features from '../components/sections/Features.astro';
-import HostingHero from '../components/sections/HostingHero.astro';
 
-// Block Components
+// Block Components (KEEP ALL OF THESE)
 import HeroBlock from '../components/blocks/HeroBlock.astro';
 import StatsBlock from '../components/blocks/StatsBlock.astro';
 import DomainSearchBlock from '../components/blocks/DomainSearchBlock.astro';
@@ -29,8 +25,6 @@ import VPSHostingBlock from '../components/blocks/VPSHostingBlock.astro';
 import CloudHostingBlock from '../components/blocks/CloudHostingBlock.astro';
 import PageBuilderBlock from '../components/blocks/PageBuilderBlock.astro';
 import DedicatedHostingBlock from '../components/blocks/DedicatedHostingBlock.astro';
-
-// New Converted Blocks
 import ContactFormBlock from '../components/blocks/ContactFormBlock.astro';
 import ServiceGridBlock from '../components/blocks/ServiceGridBlock.astro';
 import TeamGridBlock from '../components/blocks/TeamGridBlock.astro';
@@ -58,18 +52,13 @@ interface Props {
 
 const { template, data } = Astro.props;
 
-// Component registry for direct access (matches template.json naming)
+// Component registry
 const components = {
-  // Template Components
+  // Special
   PricingSection,
   PostContent,
   
-  // Legacy Section Components (temporary)
-  HeroSection: Hero,
-  FeaturesSection: Features,
-  HostingHeroSection: HostingHero,
-  
-  // Block Components
+  // Blocks
   HeroBlock,
   StatsBlock,
   DomainSearchBlock,
@@ -90,8 +79,6 @@ const components = {
   CloudHostingBlock,
   PageBuilderBlock,
   DedicatedHostingBlock,
-  
-  // New Converted Blocks
   ContactFormBlock,
   ServiceGridBlock,
   TeamGridBlock,
@@ -101,7 +88,10 @@ const components = {
   ProposalFormBlock,
   FAQBlock,
   
-  // Section aliases pointing to new blocks
+  // Aliases (Optional: Map old names to new Blocks to prevent JSON breaking immediately)
+  HeroSection: HeroBlock,
+  HostingHeroSection: HeroBlock,
+  FeaturesSection: FeatureGridBlock,
   ContactSection: ContactFormBlock,
   ServicesSection: ServiceGridBlock,
   TeamSection: TeamGridBlock,
@@ -109,7 +99,7 @@ const components = {
   SponsorsSection: LogoGridBlock,
   CasesSection: CaseStudiesBlock
 };
----2
+---
 
 <div class="template-renderer">
   {template.sections.map((section: SectionConfig) => {
@@ -117,23 +107,14 @@ const components = {
 
     if (!Component) {
       console.warn(`Component not found: ${section.component}`);
-      // Fallback: show the section name for debugging
-      return (
-        <div id={section.id} class={`section section-${section.id} p-8 bg-red-100 border-2 border-red-300`}>
-          <h2 class="text-red-800 font-bold">Component "{section.component}" not found</h2>
-          <p class="text-red-600">This section should be implemented</p>
-          <code class="mt-2 text-sm text-red-500">Component: {section.component}</code>
-        </div>
-      );
+      return null;
     }
 
-    // Provide default props for components that need them
-    const defaultProps: any = section.component === 'PricingSection' ? { plans: [] } : {};
-    const mergedProps = { ...defaultProps, ...section.props, ...data };
+    const mergedProps = { ...section.props, ...data };
     
     return (
       <div id={section.id} class={`section section-${section.id}`}>
-        {Component && <Component {...mergedProps} />}
+        <Component {...mergedProps} />
       </div>
     );
   })}
